@@ -1,24 +1,77 @@
-# README
+# Jazz bar
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[トップ画像]
 
-Things you may want to cover:
+## サイト概要
 
-* Ruby version
+個人経営向けの店舗運営を手助けする顧客管理アプリで、お客様と管理者で機能が分かれております。
 
-* System dependencies
+今回はJazzbarのホームページにアプリの機能を搭載いたしました。
 
-* Configuration
+- お客様
+  - 会員登録なしでもサイトの閲覧は可能ですが、ライブを予約する際は会員登録が必要です。
+  - 会員登録をすることで、簡単操作でライブの予約が出来ます。また、お気に入りのアーティストのライブを通知でき、見逃し防止につながります。
 
-* Database creation
+- 管理者
+  - ライブスケジュールの管理や、予約情報がリアルタイムで更新されることにより会社の運営を円滑に進める手助けとなります。
+  - 会員情報を追加することで、キープボトルの情報やお客様毎のローカルルールなど、スタッフの手助けとなる情報を管理者側のみに表示できます。
 
-* Database initialization
+## ◆サイトテーマ
 
-* How to run the test suite
+お客様は簡単操作でライブの予約ができ、お店側はライブスケジュールの管理やボトルの準備など日々の業務を手助けできるようなサイト。
 
-* Services (job queues, cache servers, search engines, etc.)
+## ◆テーマを選んだ理由
+実際にJazzberで働いていた経験をもとにサイト作成までの経緯を記載しました。
 
-* Deployment instructions
+1. 個人経営の店はまだまだデジタルの作業が少なく、またコロナ禍での「資金」「人員」の不足により、店主の作業負担が大きくなりやすい。
+   - コロナ禍で発生した急なスケジュール変更は膨大な作業である反面、修正に割ける時間が少なく大きな負担となりますが、サイトを利用することで一目でわかる予約情報や簡単作業でのスケジュール変更等、それらを店主がこなしている個人経営店への需要が見込めると考えました。
 
-* ...
+2. 開店ギリギリまで予約人数が把握できない。
+   - スケジュールはホームページに掲載しているが、予約方法が「電話」「メール」「演者に予約」とバラバラで当日開店ギリギリの時間まで把握出来ず、これによりスタッフも開店準備で必要以上に仕込んでしまい食品ロスにつながっていました。この問題を解決するためにフォームを1本にまとめ、確実なデータをリアルタイムで確認できるよう考えました。
+   - 感染防止対策の一環として人数制限を設けていても、これまでのやり方では予約フォームがバラバラなために開店ギリギリの時点で制限を超えてしまう恐れがありましたが、サイトを通して予約することにより問題を解決することができ、現状にマッチしていると考えました。
+
+3. 常連客のローカルルールが多く、スタッフの教育に時間がかかる。
+   - 常連客のキープボトルや特殊対応など、基本業務以外の事をお客様毎に記憶するのはとても大変で時間がかかるため、予約状況からデータを確認できるよう考えました。
+   - ローカルルール等の基本業務以外の事案に対して、「メモを取る」「メモを探す」「記憶する」という行動に時間を割く必要がなくなることで、新人教育にかかる時間を大幅に短縮できる事から、主に個人経営の店舗や学生スタッフの多い店舗に利益を見込めると考えました。
+
+## ◆ターゲットユーザー
+- 店舗利用客
+- 店舗スタッフ
+
+## ◆主な利用シーン
+- ライブ情報の閲覧や予約をする際に利用。
+
+## ◆サイト機能
+- 会員登録、ログイン、ログアウト、退会
+- カレンダーを利用したライブの予約
+- ブックマークによるライブ情報の通知
+- 管理者によるライブ情報の登録や編集、また、その際の画像アップロード
+- GoogleMapAPIを利用した地図の表示
+
+## ◆チャレンジ要素一覧
+[スプレッドシート](https://docs.google.com/spreadsheets/d/10Xcx2OOYlx3PShIxTSquwoSX58AI9NqD6eNgOb8Zwlg/edit?usp=sharing)を参照
+
+## ◆開発環境
+
+|項目||
+|--------|--------|
+|OS|Linux(CentOS)|
+|言語|HTML,CSS,JavaScript,Ruby,SQL|
+|フレームワーク|	Ruby on Rails|
+|JSライブラリ|jQuery|
+|IDE|Cloud9|
+
+## ◆設計書
+[ER図]
+- [ER図](https://drive.google.com/file/d/1xjoJHQ8s5tgPU0MTkHOOHNlgqibs-cH8/view?usp=sharing)
+
+[ワイヤーフレーム]
+- [お客様](https://docs.google.com/presentation/d/1Kw2A54tqzVC_ZIdJe6DPVRS3vQdmN80ye86FHXMYfYU/edit?usp=sharing)
+- [管理者](https://docs.google.com/presentation/d/1Q98HWh32wmEJxO4U7VVWwuXlGiDUMdFWa92n4Lkz9XY/edit?usp=sharing)
+
+[UI Flows]
+- [お客様](https://drive.google.com/file/d/1otHrh3OLBiVh-rWILHFNw2YfaRxGxghW/view?usp=sharing)
+- [管理者](https://drive.google.com/file/d/1yevyYfJBSnXhA_KUGSgDlBXHPr2pbRCX/view?usp=sharing)
+
+[テーブル定義書]
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1xsUDqO8UQfIhMPzysnygPwqNdFcylhWj/edit?usp=sharing&ouid=111403873293455366627&rtpof=true&sd=true)
