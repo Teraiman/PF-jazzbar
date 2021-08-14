@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  devise_for :admins
-  devise_for :customers
+  
+  # devise_for :admins
+  devise_for :admins, module: "admins"
+  # devise_for :customers
+  devise_for :customers, module: "customers"
 
   ########## 会員 ##########
 scope module: :customer do
