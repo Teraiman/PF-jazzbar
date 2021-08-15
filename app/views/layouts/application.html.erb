@@ -14,7 +14,13 @@
     <header>
       <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Jazzbar</a>
+          
+          <!--ロゴマーク-->
+          <%= link_to "Jazzbar", root_path, class: "navbar-brand"  %>
+          
+          <!--ヘッダーメニュー-->
+          
+          <!--ハンバーガーメニュー-->
           <button class="navbar-toggler" type="button"
             data-toggle="collapse"
             data-target="#navmenu1"
@@ -24,29 +30,40 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navmenu1">
-            <div class="navbar-nav ">
-              <a class="nav-item nav-link" href="#">Menu#1</a>
-              <a class="nav-item nav-link" href="#">Menu#2</a>
-              <a class="nav-item nav-link" href="#">Menu#3</a>
+            <div class="navbar-nav text-right">
+              <%= link_to "About", about_path, class: "nav-item nav-link" %>
+              <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
+              <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
+              <%= link_to "Access", access_path, class: "nav-item nav-link" %>
+              <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
             </div>
-          </div>  
+          </div>
+          
         </div>
       </nav>
     </header>
   <!--ヘッダー-->
-  
+
     <%= yield %>
-    
+
   <!--フッター-->
-    <footer class="bg-dark p-5 mt-5">
+    <footer class="bg-dark p-5 mt-5 text-white">
       <div class="container">
-        <div class="row">
-          <div class="col-12 text-white">
-            
-          </div>
+        <div class="text-center">
+          <span>Follow us</span>
+          <%= link_to root_path do %>
+            <span><i class="fab fa-twitter-square fa-3x"></i></span>
+          <% end %>
+          <%= link_to root_path do %>
+            <span><i class="fab fa-youtube-square fa-3x"></i></span>
+            <% end %>
+          <%= link_to root_path do %>
+            <span><i class="fab fa-facebook-square fa-3x"></i></span>
+          <% end %>
         </div>
+        <div class="text-center">Copyright © 2021 Jazz bar Inc. All Rights Reserved.</div>
       </div>
-    </footer>  
+    </footer>
   <!--フッター-->
   </body>
 </html>

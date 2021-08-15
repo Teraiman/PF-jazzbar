@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
   # devise_for :admins
   devise_for :admins, module: "admins"
   # devise_for :customers
@@ -14,17 +14,17 @@ scope module: :customer do
     get 'homes/access', to: 'homes#access', as: 'access'
 
   #会員/会員
-    resources :customers, only: [:show, :edit]
     get 'customers/quit', to: 'customers#quit'
     get 'customers/quitcheck', to: 'customers#quitcheck'
+    resources :customers, only: [:show, :edit]
 
   #会員/予約
-    resources :reserves, only: [:new, :index, :show]
     get 'reserves/finish', to: 'reserves#finish'
+    resources :reserves, only: [:new, :index, :show]
 
   #会員/スケジュール
-    resources :schedules, only: [:index, :show]
     get 'schedules/index_list'
+    resources :schedules, only: [:index, :show]
 
   #会員/インフォメーション
     resources :informations, only: [:index, :show]
@@ -42,10 +42,8 @@ end
   namespace :admin do
 
   #管理者/会員
-    resources :customers, only: [:index, :show, :edit]
-    get 'customers/quit', to: 'customers#quit'
-    get 'customers/quitcheck', to: 'customers#quitcheck'
     get 'customers/edit_memo', to: 'customers#edit_memo'
+    resources :customers, only: [:index, :show, :edit]
 
   #管理者/ホーム
     get 'homes/top', to: 'homes#top'
@@ -53,8 +51,8 @@ end
     get 'homes/access', to: 'homes#access', as: 'access'
 
   #管理者/スケジュール
-    resources :schedules, only: [:new, :index, :show, :edit]
     get 'schedules/index_list', to: 'schedules#index_list'
+    resources :schedules, only: [:new, :index, :show, :edit]
 
   #管理者/アーティスト
     resources :artists, only: [:index, :edit]

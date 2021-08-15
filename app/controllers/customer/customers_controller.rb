@@ -10,4 +10,5 @@ class Customer::CustomersController < ApplicationController
 
   def edit
   end
+  
 end
