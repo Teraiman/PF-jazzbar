@@ -30,6 +30,7 @@ scope module: :customer do
     resources :informations, only: [:index, :show]
 
   #会員/アーティスト
+    resources :artists, only: [:index]
 
   #会員/ハウスルール
     get 'house_rules/index'

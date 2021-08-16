@@ -16,9 +16,28 @@
         <div class="container-fluid">
           
           <!--ロゴマーク-->
-          <%= link_to "Jazzbar", root_path, class: "navbar-brand"  %>
+          <h1><%= link_to "Jazzbar", root_path, class: "navbar-brand"  %></h1>
           
           <!--ヘッダーメニュー-->
+          <div class="navbar">
+            <% if admin_signed_in? %>
+              <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
+              <%= link_to "会員一覧", admin_customers_path, class:"nav-menu-text m-2" %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-menu-text m-2" %>
+            <% elsif customer_signed_in? %>
+              <div class="text-white p-2 mx-2">
+                ようこそ 「<%= current_customer.name %>」 様 
+              </div>
+              <!--%= link_to "通知ボタン", products_path, class:"nav-menu-text m-2" %>-->
+              <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
+              <%= link_to "マイページ", customer_path(current_customer), class:"nav-menu-text m-2" %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"nav-menu-text m-2" %>
+            <% else %>
+              <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
+              <%= link_to "新規登録", new_customer_registration_path, class:"nav-menu-text m-2" %>
+              <%= link_to "ログイン", new_customer_session_path, class:"nav-menu-text m-2" %>
+            <% end %>
+          </div>
           
           <!--ハンバーガーメニュー-->
           <button class="navbar-toggler" type="button"
