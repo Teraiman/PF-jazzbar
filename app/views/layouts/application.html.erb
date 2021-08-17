@@ -16,14 +16,31 @@
         <div class="container-fluid">
 
           <!--ロゴマーク-->
+          <!--管理者ログイン中-->
+          <% if admin_signed_in? %>
+          <h1><%= link_to "Jazzbar", admin_homes_top_path, class: "navbar-brand"  %></h1>
+          
+          <!--会員ログイン中-->  
+          <% elsif customer_signed_in? %>
           <h1><%= link_to "Jazzbar", root_path, class: "navbar-brand"  %></h1>
+          
+          <!--ログインしていない時-->
+          <% else %>
+          <h1><%= link_to "Jazzbar", root_path, class: "navbar-brand"  %></h1>
+          <% end %>
 
-          <!--ヘッダーメニュー-->
+        <!--ヘッダーメニュー-->
           <div class="navbar">
+            <!--管理者ログイン中-->
             <% if admin_signed_in? %>
-              <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
+              <div class="text-white p-2 mx-2">
+                管理者ログイン中
+              </div>
+              <%= link_to "SCHEDULE", admin_schedules_path, class:"nav-menu-text m-2" %>
               <%= link_to "会員一覧", admin_customers_path, class:"nav-menu-text m-2" %>
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-menu-text m-2" %>
+              
+            <!--会員ログイン中-->  
             <% elsif customer_signed_in? %>
               <div class="text-white p-2 mx-2">
                 ようこそ 「<%= current_customer.name %>」 様
@@ -32,6 +49,8 @@
               <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
               <%= link_to "マイページ", customer_path(current_customer), class:"nav-menu-text m-2" %>
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"nav-menu-text m-2" %>
+              
+            <!--ログインしていない時-->
             <% else %>
               <%= link_to "SCHEDULE", schedules_path, class:"nav-menu-text m-2" %>
               <%= link_to "新規登録", new_customer_registration_path, class:"nav-menu-text m-2" %>
@@ -39,25 +58,68 @@
             <% end %>
           </div>
 
-          <!--ハンバーガーメニュー-->
-          <button class="navbar-toggler" type="button"
-            data-toggle="collapse"
-            data-target="#navmenu1"
-            aria-controls="navmenu1"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navmenu1">
-            <div class="navbar-nav text-right">
-              <%= link_to "About", about_path, class: "nav-item nav-link" %>
-              <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
-              <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
-              <%= link_to "Access", access_path, class: "nav-item nav-link" %>
-              <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
+        <!--ハンバーガーメニュー-->
+          <!--管理者ログイン中-->
+          <% if admin_signed_in? %>
+            <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target="#navmenu1"
+              aria-controls="navmenu1"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu1">
+              <div class="navbar-nav text-right">
+                <%= link_to "About", admin_about_path, class: "nav-item nav-link" %>
+                <%= link_to "Information", admin_informations_path, class: "nav-item nav-link" %>
+                <%= link_to "House rule", admin_house_rules_index_path, class: "nav-item nav-link" %>
+                <%= link_to "Access", admin_access_path, class: "nav-item nav-link" %>
+                <%= link_to "Artist", admin_artists_path, class: "nav-item nav-link" %>
+              </div>
             </div>
-          </div>
-
+            
+          <!--会員ログイン中--> 
+          <% elsif customer_signed_in? %>
+            <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target="#navmenu1"
+              aria-controls="navmenu1"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu1">
+              <div class="navbar-nav text-right">
+                <%= link_to "About", about_path, class: "nav-item nav-link" %>
+                <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
+                <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
+                <%= link_to "Access", access_path, class: "nav-item nav-link" %>
+                <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
+              </div>
+            </div>
+            
+          <!--ログインしていない時-->
+          <% else %>
+            <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target="#navmenu1"
+              aria-controls="navmenu1"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu1">
+              <div class="navbar-nav text-right">
+                <%= link_to "About", about_path, class: "nav-item nav-link" %>
+                <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
+                <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
+                <%= link_to "Access", access_path, class: "nav-item nav-link" %>
+                <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
+              </div>
+            </div>
+          <% end %>
+          
         </div>
       </nav>
     </header>
