@@ -12,5 +12,4 @@ class Customer < ApplicationRecord
   validates :postal_cord, presence: {message: '7桁で入力してください。'}, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
   validates :telephone_number,  presence: {message: '10桁もしくは11桁で入力してください。'}, format: { with: /\A\d{10,11}\z/ }
-  
 end

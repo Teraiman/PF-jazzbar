@@ -1,4 +1,6 @@
 class Customer::CustomersController < ApplicationController
+  before_action :authenticate_customer!, except: [:quit]
+
   def quit
   end
 
@@ -10,6 +12,23 @@ class Customer::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = Customer.find(current_customer.id)
+  end
+
+  def update
+    @customer = current_customer
+    if @customer.update(customer_params)
+      redirect_to customer_path(@customer)
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @customer = current_customer(params[:id])
+    @customer.destroy
+    flash[:success] = '全てのデータを削除しました。'
+    redirect_to :customers_quit
   end
 
   private

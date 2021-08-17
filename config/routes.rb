@@ -16,7 +16,7 @@ scope module: :customer do
   #会員/会員
     get 'customers/quit', to: 'customers#quit'
     get 'customers/quitcheck', to: 'customers#quitcheck'
-    resources :customers, only: [:show, :edit]
+    resources :customers, only: [:show, :edit, :update]
 
   #会員/予約
     get 'reserves/finish', to: 'reserves#finish'
