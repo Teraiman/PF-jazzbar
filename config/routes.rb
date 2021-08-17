@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # devise_for :admins
   devise_for :admins, module: "admins"
   # devise_for :customers
-  devise_for :customers, module: "customers"
+  devise_for :customers, module: "customers", :controllers => {
+    :sessions => 'customers/sessions'
+  }
 
   ########## 会員 ##########
 scope module: :customer do
@@ -14,9 +16,14 @@ scope module: :customer do
     get 'homes/access', to: 'homes#access', as: 'access'
 
   #会員/会員
-    get 'customers/quit', to: 'customers#quit'
-    get 'customers/quitcheck', to: 'customers#quitcheck'
-    resources :customers, only: [:show, :edit, :update]
+    # get 'customers/quit', to: 'customers#quit'
+    # get 'customers/quitcheck', to: 'customers#quitcheck'
+    resources :customers, only: [:show, :edit, :update] do
+      collection do
+        get 'quitcheck'
+        patch 'quit'
+      end
+    end
 
   #会員/予約
     get 'reserves/finish', to: 'reserves#finish'

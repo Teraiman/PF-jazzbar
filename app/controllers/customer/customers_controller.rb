@@ -2,6 +2,11 @@ class Customer::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:quit]
 
   def quit
+    @customer = current_customer
+    @customer.update(is_deleted: true) #is_deletedをtrueへ
+    reset_session #データをリセットする
+    flash[:alert] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   def quitcheck
@@ -18,17 +23,12 @@ class Customer::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
+      flash[:alert] = "登録しました"
       redirect_to customer_path(@customer)
     else
+      flash[:alert] = "登録できませんでした"
       render :edit
     end
-  end
-  
-  def destroy
-    @customer = current_customer(params[:id])
-    @customer.destroy
-    flash[:success] = '全てのデータを削除しました。'
-    redirect_to :customers_quit
   end
 
   private
