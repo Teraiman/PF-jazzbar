@@ -60,13 +60,13 @@ end
 
   #管理者/スケジュール
     get 'schedules/index_list', to: 'schedules#index_list'
-    resources :schedules, only: [:new, :index, :show, :edit]
+    resources :schedules
 
   #管理者/アーティスト
-    resources :artists, only: [:index, :edit]
+    resources :artists
 
   #管理者/予約
-    resources :reserves, only: [:new, :index, :show, :edit]
+    resources :reserves
 
   #管理者/インフォメーション
     resources :informations
