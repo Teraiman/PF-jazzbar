@@ -28,6 +28,25 @@ class Admin::InformationsController < ApplicationController
     end
   end
 
+  def update
+    @information = Information.find(params[:id])
+    if @information.update(information_params)
+      flash[:alert] = "更新しました"
+      redirect_to admin_information_path(@information.id)
+    else
+      flash[:alert] = "更新できませんでした"
+      render action: :edit
+    end
+  end
+
+  def destroy
+    @information = Information.find(params[:id])
+    @information.delete
+    flash[:alert] = "削除しました"
+    redirect_to admin_informations_path
+  end
+
+
   private
   def information_params
     params.require(:information).permit(:date, :title, :content)
