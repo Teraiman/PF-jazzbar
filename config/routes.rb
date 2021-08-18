@@ -69,9 +69,10 @@ end
     resources :reserves, only: [:new, :index, :show, :edit]
 
   #管理者/インフォメーション
-    resources :informations, only: [:new, :index, :show, :edit]
+    resources :informations
 
   #管理者/ハウスルール
+    get 'house_rules/index'
 
   end
   ########## 管理者 ##########

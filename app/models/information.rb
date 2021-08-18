@@ -1,4 +1,4 @@
 class Information < ApplicationRecord
-  validates :data, presence: true
+  validates :date, presence: true
   validates :title, presence: true
 end
