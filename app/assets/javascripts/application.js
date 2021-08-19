@@ -14,25 +14,26 @@
 //= require popper
 //= require bootstrap-sprockets
 
+//= require jquery
+//= require jquery.turbolinks
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
 //= require moment
 //= require fullcalendar
 //= require_tree .
 
-$(function () {
-    $(document).on('turbolinks:load', function () {
-        function eventCalendar() {
-            return $('#calendar').fullCalendar({});
-        };
-        function clearCalendar() {
-            $('#calendar').html('');
-        };
-        $(document).on('turbolinks:load', function () {
-          eventCalendar();
-        });
-        $(document).on('turbolinks:before-cache', clearCalendar);
-    });
+/*global $*/
+//ページ読み込みが完了したら
+$(document).on('turbolinks:load', function () {
+  var calendarEl = $("#calendar");
+  //フルカレンダーを初期化処理する
+  var calendar = new FullCalendar.Calendar(calendarEl);
+  //フルカレンダーを表示する
+  calendar.render();
 });
+
+// メンターがテストの時に使っていたコード
+// function test () {
+//   consle.log("test");
+// }

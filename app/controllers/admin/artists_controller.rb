@@ -3,6 +3,7 @@ class Admin::ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all.page(params[:page]).per(10)
+    @artist = Artist.new
     # part_id = Part.find_by(params[:id]).id
   end
 
@@ -19,14 +20,12 @@ class Admin::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.new(artist_params)
-    if @artist.save(uniqueness: false)
+    if @artist.save
       flash[:alert] = "アーティストを追加しました"
-      redirect_to admin_artists_path
     else
-      @artist.save(uniqueness: true)
       flash[:alert] = "このアーティストはすでに追加済みです"
-      redirect_to admin_artists_path
     end
+    redirect_to admin_artists_path
   end
 
   def update
@@ -49,6 +48,6 @@ class Admin::ArtistsController < ApplicationController
 
     private
   def artist_params
-    params.require(:artist).permit(:name)
+    params.require(:artist).permit(:name, :part_id)
   end
 end
