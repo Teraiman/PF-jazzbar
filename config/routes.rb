@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :admins
@@ -64,6 +65,9 @@ end
 
   #管理者/アーティスト
     resources :artists
+
+  #管理者/パート
+    resources :part, only: [:index, :edit, :update, :create, :destroy]
 
   #管理者/予約
     resources :reserves
