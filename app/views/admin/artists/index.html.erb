@@ -1,6 +1,23 @@
 <h3 class="text-center p-5">Artist一覧</h3>
 <div class="container">
-
+  
+  <!--削除予定-->
+  <%= form_with model: @artist, url: admin_part_index_path, local:true do |f| %>
+    <div class="row">
+      <div class="col-12">
+        <table class="form-group table table-borderless col-6">
+          <tr>
+            <th>アーティスト名</th>
+            <td><%= f.text_field :name %></td>
+            <!--<td>%= f.collection_select :part_name, parts.all, :part_name, :part_id, include: "選択してください" %></td>-->
+            <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  <% end %>
+  <!--削除予定-->
+  
   <div class="row">
     <table class="table table-hover">
       <!--each文を使う-->
@@ -9,7 +26,7 @@
               <%= link_to edit_admin_artist(artist.id) do %>
                 <%= artist.name %>
               <% end %>
-            <td><%= @part.part_name %></td>
+            <td><%= part_id.part_name %></td>
             <td>
             </td>
           </tr>
@@ -17,5 +34,5 @@
       <!--each文を使う-->
     </table>
   </div>
-  <%= paginate @artist %>
+  <%= paginate @artists %>
 </div>

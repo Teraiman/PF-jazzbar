@@ -1,14 +1,14 @@
 class Admin::ArtistsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @artists = Artist.all.page(params[:page]).per(10)
-    @part = Part.find_by(code: paprams[:part_id]).id
+    # part_id = Part.find_by(params[:id]).id
   end
-  
+
   def show
   end
-  
+
   def new
     @artist = Artist.new
   end
@@ -16,13 +16,19 @@ class Admin::ArtistsController < ApplicationController
   def edit
     @artist = Artist.find(params[:id])
   end
-  
+
   def create
     @artist = Artist.new(artist_params)
-    @artist.save
-
+    if @artist.save(uniqueness: false)
+      flash[:alert] = "アーティストを追加しました"
+      redirect_to admin_artists_path
+    else
+      @artist.save(uniqueness: true)
+      flash[:alert] = "このアーティストはすでに追加済みです"
+      redirect_to admin_artists_path
+    end
   end
-  
+
   def update
     @artist = Artist.find(params[:id])
     if @artist.update(artist_params)
@@ -33,14 +39,14 @@ class Admin::ArtistsController < ApplicationController
       render action: :edit
     end
   end
-  
+
   def destroy
     @artist = Artist.find(params[:id])
     @artist.delete
     flash[:alert] = "削除しました"
     redirect_to admin_artists_path
   end
-  
+
     private
   def artist_params
     params.require(:artist).permit(:name)

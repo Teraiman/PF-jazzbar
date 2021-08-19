@@ -17,9 +17,14 @@ class Admin::PartController < ApplicationController
 
   def create
     @part = Part.new(part_params)
-    @part.save
-    flash[:alert] = "パートを追加しました"
-    redirect_to admin_part_index_path
+    if @part.save(uniqueness: false)
+      flash[:alert] = "パートを追加しました"
+      redirect_to admin_part_index_path
+    else
+      @part.save(uniqueness: true)
+      flash[:alert] = "このパートはすでに追加済みです"
+      redirect_to admin_part_index_path
+    end
   end
 
   private
