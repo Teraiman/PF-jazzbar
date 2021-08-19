@@ -1,5 +1,6 @@
 class Admin::SchedulesController < ApplicationController
   def index
+    @schedules = Schedule.all
   end
 
   def index_list
@@ -13,4 +14,17 @@ class Admin::SchedulesController < ApplicationController
 
   def new
   end
+  
+  def create
+  end
+  
+  def update
+  end
+  
+  def destroy
+  end
+  
+  def private
+  end
+  
 end
