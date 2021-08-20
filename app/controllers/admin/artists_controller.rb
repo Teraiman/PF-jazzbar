@@ -4,7 +4,6 @@ class Admin::ArtistsController < ApplicationController
   def index
     @artists = Artist.all.page(params[:page]).per(10)
     @artist = Artist.new
-    # part_id = Part.find_by(params[:id]).id
   end
 
   def show
