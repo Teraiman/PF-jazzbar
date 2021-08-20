@@ -51,8 +51,12 @@ end
   namespace :admin do
 
   #管理者/会員
-    get 'customers/edit_memo', to: 'customers#edit_memo'
-    resources :customers, only: [:index, :show, :edit]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      member do
+        get 'edit_memo'
+        patch 'edit_memo'
+      end
+    end
 
   #管理者/ホーム
     get 'homes/top', to: 'homes#top'
