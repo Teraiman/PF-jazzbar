@@ -17,3 +17,27 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.background{
+  background-image: url(background/xv.png);
+}
+
+// トップページスライドショー
+.image1 {
+  background-image: url(880774_s.jpg);
+}
+.image2 {
+  background-image: url(1109414_s.jpg);
+}
+.image3 {
+  background-image: url(22079864_s.jpg);
+}
+#container{
+  height: 500px;
+}

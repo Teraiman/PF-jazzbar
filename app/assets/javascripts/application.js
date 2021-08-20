@@ -24,14 +24,56 @@
 //= require_tree .
 
 /*global $*/
-//ページ読み込みが完了したら
-$(document).on('turbolinks:load', function () {
-  var calendarEl = $("#calendar");
-  //フルカレンダーを初期化処理する
-  var calendar = new FullCalendar.Calendar(calendarEl);
-  //フルカレンダーを表示する
+
+// トップページスライドショー
+document.addEventListener("turbolinks:load",
+  function () {
+    $(document).ready(function () {
+      $("#images").skippr({
+        // スライドショーの変化 ("fade" or "slide")
+        transition : 'fade',
+        // 変化に係る時間(ミリ秒)
+        speed : 2000,
+        // easingの種類
+        easing : 'easeOutQuart',
+        // ナビゲーションの形("block" or "bubble")
+        navType : 'none',
+        // 子要素の種類("div" or "img")
+        childrenElementType : 'div',
+        // ナビゲーション矢印の表示(trueで表示)
+        arrows : false,
+        // スライドショーの自動再生(falseで自動再生なし)
+        autoPlay : true,
+        // 自動再生時のスライド切替間隔(ミリ秒)
+        autoPlayDuration : 3000,
+        // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+        // keyboardOnAlways : true,
+        // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+        hidePrevious : false
+      });
+    });
+  });
+
+// FullCalendar
+document.addEventListener('turbolinks:load', 
+function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth'
+  });
   calendar.render();
 });
+
+
+// メンターに聞いた
+//ページ読み込みが完了したら
+// $(document).on('turbolinks:load', function () {
+//   var calendarEl = $("#calendar");
+//   //フルカレンダーを初期化処理する
+//   var calendar = new FullCalendar.Calendar(calendarEl);
+//   //フルカレンダーを表示する
+//   calendar.render();
+// });
 
 // メンターがテストの時に使っていたコード
 // function test () {

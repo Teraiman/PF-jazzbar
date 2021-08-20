@@ -7,13 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css">
+    <!--fullcalendar-->
+    <link href='stylesheets/main.css' rel='stylesheet' />
+    <script src='javascripts/main.js'></script>
+    <!--fullcalendar-->
   </head>
-  
 
-  <body data-turbolinks="false">
+
+  <body>
   <!--ヘッダー-->
     <header>
       <nav class="navbar navbar-dark bg-dark">
@@ -32,6 +33,8 @@
           <% else %>
           <h1><%= link_to "Jazzbar", root_path, class: "navbar-brand"  %></h1>
           <% end %>
+
+          <div class="text-white"><%= flash[:alert] %></div>
 
         <!--ヘッダーメニュー-->
           <div class="navbar">
@@ -127,15 +130,15 @@
         </div>
       </nav>
     </header>
-    <h3 class="text-center">
-      <%= flash[:alert] %>
-    </h3>
+
   <!--ヘッダー-->
 
+  <div class="background pb-5">
     <%= yield %>
+  </div>
 
   <!--フッター-->
-    <footer class="bg-dark p-5 mt-5 text-white">
+    <footer class="bg-dark text-white">
       <div class="container">
         <div class="text-center">
           <span>Follow us</span>

@@ -2,7 +2,7 @@ class Admin::InformationsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @informations = Information.all.page(params[:page]).per(10)
+    @informations = Information.all.page(params[:page]).per(10).order("date DESC")
   end
 
   def show
