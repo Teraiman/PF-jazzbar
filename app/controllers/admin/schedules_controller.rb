@@ -24,7 +24,9 @@ class Admin::SchedulesController < ApplicationController
   def destroy
   end
   
-  def private
+  private
+  def schedule_params
+    params.require(:schedule).permit(:title, :date, :time, :charge,)
   end
   
 end
