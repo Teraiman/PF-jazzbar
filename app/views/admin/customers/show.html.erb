@@ -48,8 +48,10 @@
         </tbody>
       </table>
     </div>
-    <div class="col-4">
-        <
+    <div class="col-5">
+        <div class="container-fluid bg-white">
+          <%= safe_join(@customer.memo.split("\n"),tag(:br)) %>
+        </div>
     </div>
   </div>
 
