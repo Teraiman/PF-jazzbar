@@ -1,2 +1,46 @@
-<h1>Admin::Schedules#new</h1>
-<p>Find me in app/views/admin/schedules/new.html.erb</p>
+<h3 class="text-center p-5">公演新規作成</h3>
+
+<div class="container">
+  <%= form_with model: @schedule, url: admin_schedules_path, local:true do |f| %>
+
+    <div class="row pt-5">
+      <div class="col-3 offset-1"><%= f.label :"TITLE" %></div>
+      <div class="col-6"><%= f.file_field :product_image %></div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-3 offset-1"><%= f.label :"TITLE" %></div>
+      <div class="col-6"><%= f.text_field :title, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"DATE" %></div>
+      <div class="col-6"><%= f.text_field :date, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"TIME" %></div>
+      <div class="col-6"><%= f.text_field :time, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"CHARGE" %></div>
+      <div class="col-6"><%= f.text_field :charge, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"MEMBER" %></div>
+      <div class="col-6"><%= f.text_field :member, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"OTHER" %></div>
+      <div class="col-6"><%= f.text_field :other, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-5 offset-5"><%= f.submit "編集内容を保存", class: "btn btn-success" %></div>
+    </div>
+
+  <% end %>
+</div>
