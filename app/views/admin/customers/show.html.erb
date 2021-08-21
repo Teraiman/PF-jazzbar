@@ -50,7 +50,11 @@
     </div>
     <div class="col-5">
         <div class="container-fluid bg-white">
-          <%= safe_join(@customer.memo.split("\n"),tag(:br)) %>
+          <% if @customer.memo.nil? %>
+            <%= @customer.memo %>
+          <% else %>
+            <%= safe_join(@customer.memo.split("\n"),tag(:br)) %>
+          <% end %>
         </div>
     </div>
   </div>

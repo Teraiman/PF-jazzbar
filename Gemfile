@@ -75,5 +75,5 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'font-awesome-sass'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+gem "simple_calendar", "~> 2.4"
+

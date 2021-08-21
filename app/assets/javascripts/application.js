@@ -19,11 +19,23 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require moment
-//= require fullcalendar
 //= require_tree .
-
 /*global $*/
+
+
+// fullcalendar
+// $('#calendar').fullCalendar({});
+
+// $(() => {
+//   $(document).on('turbolinks:load', () => {
+//     $('#calendar').fullCalendar({})
+//   })
+// })
+
+
+
+
+
 
 // トップページスライドショー
 document.addEventListener("turbolinks:load",
@@ -54,15 +66,7 @@ document.addEventListener("turbolinks:load",
     });
   });
 
-// FullCalendar
-document.addEventListener('turbolinks:load', 
-function() {
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth'
-  });
-  calendar.render();
-});
+
 
 
 // メンターに聞いた

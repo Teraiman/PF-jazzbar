@@ -13,7 +13,7 @@ class Admin::CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def edit_memo
     @customer = Customer.find(params[:id])
   end
@@ -28,12 +28,12 @@ private
 
    def customer_params
      	params.require(:customer).permit(
-     	  :name, 
-     	  :name_kana, 
-     	  :email, 
-     	  :postal_cord, 
-     	  :address, 
-     	  :telephone_number, 
+     	  :name,
+     	  :name_kana,
+     	  :email,
+     	  :postal_cord,
+     	  :address,
+     	  :telephone_number,
      	  :memo,
      	  :is_deleted
      	  )
