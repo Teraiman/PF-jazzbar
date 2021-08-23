@@ -1,9 +1,9 @@
-<h3 class="text-center p-5">公演情報詳細</h3>
+<h3 class="text-center p-5">公演メンバー入力</h3>
 
 <div class="container">
   <div class="row">
     <div class="col-5">
-      <%= attachment_image_tag @schedule, :image, :fill, 300, 300, fomat: 'jpeg' %>
+      <%= attachment_image_tag @schedule, :image, :fill, 400, 300, fomat: 'jpeg' %>
     </div>
     <div class="col-7">
       <table class="table table-bordered bg-light">
@@ -30,15 +30,21 @@
             <td class="text-left">
               <% @schedule.artists.each do |artist| %>
                 <%= artist.name %>
+                （<%= artist.part.part_name %>）<br />
+                <!--%= link_to "削除", admin_member_destroy_path(@schedule.id), method: :delete %>-->
               <% end %>
 
+              <%= form_with model: Relationship.new, url: admin_member_select_path(@schedule), local:true do |f| %>
+                <%= f.label :Artistを選択 %>
+                <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
+                <%= f.submit "追加" %>
+              <% end %>
 
               <%= form_with model: Artist.new, url: admin_member_create_path(@schedule), local:true do |f| %>
                 <div class="row">
                   <div class="col-12">
                     <table class="form-group table table-borderless col-8">
                       <tr>
-                        <th>アーティスト名</th>
                         <td><%= f.text_field :name %></td>
                               <!--保存先のカラム名, 表示するモデル名の.all, 保存先のカラムに入れたい表示するモデルのカラム名, 表示するモデルの表示したいカラム-->
                         <td><%= f.collection_select :part_id, Part.all, :id, :part_name, include: "選択してください" %></td>
@@ -48,14 +54,7 @@
                   </div>
                 </div>
               <% end %>
-
-
-              <%= form_with model: Relationship.new, url: admin_member_select_path(@schedule), local:true do |f| %>
-                <%= f.label :artist %>
-                <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
-                <%= f.submit "新規登録" %>
-              <% end %>
-
+              
             </td>
           </tr>
 
@@ -69,9 +68,11 @@
   </div>
 
   <div class="row p-2">
-    <span class="col-2"><%= link_to "編集する", edit_admin_schedule_path, class: "btn btn-info" %></span>
+    <span class="col-1 offset-5"><%= link_to "戻る", :back, class: "btn btn-info" %></span>
     <span class="col-2"><%= link_to "予約を追加する", new_admin_reserf_path, class: "btn btn-info" %></span>
     <span class="col-2"><%= link_to "予約の確認", admin_reserf_path, class: "btn btn-info" %></span>
+    <span class="col-2"><%= link_to "保存する", admin_schedules_path, class: "btn btn-info" %></span>
+
   </div>
 </div>
   </div>

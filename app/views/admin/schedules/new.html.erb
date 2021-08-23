@@ -30,7 +30,8 @@
 
       <div class="row pt-3">
         <div class="col-3 offset-1"><%= "MEMBER" %></div>
-        <div class="col-6"><%= text_field_tag :artist_name, "", class:"form-control"%></div>
+        <div class="col-6"><%= "次のページで入力" %></div>
+        <!--<div class="col-6">%= text_field_tag :artist_name, "", class:"form-control"%></div>-->
       </div>
 
     <div class="row pt-3">
@@ -39,7 +40,7 @@
     </div>
 
     <div class="row pt-5">
-      <div class="col-5 offset-5"><%= f.submit "編集内容を保存", class: "btn btn-success" %></div>
+      <div class="col-5 offset-5"><%= f.submit "NEXT", class: "btn btn-success" %></div>
     </div>
 
   <% end %>

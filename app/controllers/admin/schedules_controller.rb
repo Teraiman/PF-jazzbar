@@ -46,12 +46,18 @@ class Admin::SchedulesController < ApplicationController
     redirect_to admin_member_path(@schedule)
   end
 
+  def member_destroy
+    @schedule = Schedule.find(params[:id]).relationships
+    @schedule.relationships.destroy(schedule_member_select_params)
+    redirect_to request.referer
+  end
+
   def create
     @schedule = Schedule.new(schedule_params)
     artist = Artist.find_or_create_by(name: params[:artist_name])
     if @schedule.save
       Relationship.create(artist_id: artist.id, schedule_id: @schedule.id)
-      redirect_to admin_schedule_path(@schedule)
+      redirect_to admin_member_path(@schedule)
     else
       render "new"
     end
