@@ -64,6 +64,9 @@ end
     get 'homes/access', to: 'homes#access', as: 'access'
 
   #管理者/スケジュール
+    get 'schedules/:id/member', to: 'schedules#member', as: 'member'
+    post 'schedules/:id/member', to: 'schedules#member_create', as: 'member_create'
+    post 'schedules/:id/member_select', to: 'schedules#member_select', as: 'member_select'
     get 'schedules/index_list', to: 'schedules#index_list'
     resources :schedules
 

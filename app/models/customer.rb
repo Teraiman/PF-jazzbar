@@ -6,6 +6,9 @@ class Customer < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
   has_many :reserves, dependent: :destroy
+  has_many :schedules, through: :reserves
+  has_many :artists, through: :notifications
+
 
   validates :name, presence: true
   validates :name_kana, presence: {message: 'カタカナで入力して下さい。'}, format: { with: /\A[ｧ-ﾝﾞﾟァ-ヶー－]+\z/ }

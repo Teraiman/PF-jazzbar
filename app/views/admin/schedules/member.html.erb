@@ -31,6 +31,31 @@
               <% @schedule.artists.each do |artist| %>
                 <%= artist.name %>
               <% end %>
+
+
+              <%= form_with model: Artist.new, url: admin_member_create_path(@schedule), local:true do |f| %>
+                <div class="row">
+                  <div class="col-12">
+                    <table class="form-group table table-borderless col-8">
+                      <tr>
+                        <th>アーティスト名</th>
+                        <td><%= f.text_field :name %></td>
+                              <!--保存先のカラム名, 表示するモデル名の.all, 保存先のカラムに入れたい表示するモデルのカラム名, 表示するモデルの表示したいカラム-->
+                        <td><%= f.collection_select :part_id, Part.all, :id, :part_name, include: "選択してください" %></td>
+                        <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+
+
+              <%= form_with model: Relationship.new, url: admin_member_select_path(@schedule), local:true do |f| %>
+                <%= f.label :artist %>
+                <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
+                <%= f.submit "新規登録" %>
+              <% end %>
+
             </td>
           </tr>
 
@@ -47,5 +72,7 @@
     <span class="col-2"><%= link_to "編集する", edit_admin_schedule_path, class: "btn btn-info" %></span>
     <span class="col-2"><%= link_to "予約を追加する", new_admin_reserf_path, class: "btn btn-info" %></span>
     <span class="col-2"><%= link_to "予約の確認", admin_reserf_path, class: "btn btn-info" %></span>
+  </div>
+</div>
   </div>
 </div>

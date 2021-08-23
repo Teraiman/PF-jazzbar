@@ -23,18 +23,6 @@
 /*global $*/
 
 
-// fullcalendar
-// $('#calendar').fullCalendar({});
-
-// $(() => {
-//   $(document).on('turbolinks:load', () => {
-//     $('#calendar').fullCalendar({})
-//   })
-// })
-
-
-
-
 
 
 // トップページスライドショー
@@ -66,20 +54,3 @@ document.addEventListener("turbolinks:load",
     });
   });
 
-
-
-
-// メンターに聞いた
-//ページ読み込みが完了したら
-// $(document).on('turbolinks:load', function () {
-//   var calendarEl = $("#calendar");
-//   //フルカレンダーを初期化処理する
-//   var calendar = new FullCalendar.Calendar(calendarEl);
-//   //フルカレンダーを表示する
-//   calendar.render();
-// });
-
-// メンターがテストの時に使っていたコード
-// function test () {
-//   consle.log("test");
-// }
