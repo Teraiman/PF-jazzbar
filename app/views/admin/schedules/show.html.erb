@@ -1,2 +1,51 @@
-<h1>Admin::Schedules#show</h1>
-<p>Find me in app/views/admin/schedules/show.html.erb</p>
+<h1 class="title text-center p-5">公演情報詳細</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <%= attachment_image_tag @schedule, :image, :fill, 300, 300, fomat: 'jpeg' %>
+    </div>
+    <div class="col-7">
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="info col-3">TITLE</td>
+            <td class="text-left"><%= @schedule.title %></td>
+          </tr>
+          <tr>
+              <td class="info col-3">DATE</td>
+              <td class="text-left"><%= @schedule.date %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">TIME</td>
+            <td class="text-left"><%= @schedule.time %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">CHARGE</td>
+            <td class="text-left"><%= @schedule.charge %></td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">MEMBER</td>
+            <td class="text-left">
+              <% @schedule.artists.each do |artist| %>
+                <%= artist.name %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">OTHER</td>
+            <td class="text-left"><%= @schedule.other %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <span class="col-2"><%= link_to "編集する", edit_admin_schedule_path, class: "btn btn-info" %></span>
+    <span class="col-2"><%= link_to "予約を追加する", new_admin_reserf_path, class: "btn btn-info" %></span>
+    <span class="col-2"><%= link_to "予約の確認", admin_reserf_path, class: "btn btn-info" %></span>
+  </div>
+</div>

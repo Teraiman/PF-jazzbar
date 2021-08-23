@@ -1,2 +1,71 @@
-<h1>Admin::Schedules#new</h1>
-<p>Find me in app/views/admin/schedules/new.html.erb</p>
+<h1 class="title text-center p-5">公演新規作成</h1>
+
+<div class="container">
+  <%= form_with model: @schedule, url: admin_schedules_path, local:true do |f| %>
+
+    <div class="row pt-5">
+      <div class="col-3 offset-1"><%= f.label :"IMAGE" %></div>
+      <div class="col-6"><%= f.attachment_field :image %></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"TITLE" %></div>
+      <div class="col-6"><%= f.text_field :title, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"DATE" %></div>
+      <div class="col-6"><%= f.date_field :date, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"TIME" %></div>
+      <div class="col-6"><%= f.text_field :time, value: @time, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"CHARGE" %></div>
+      <div class="col-6"><%= f.text_field :charge, value: @charge, class:"form-control"%></div>
+    </div>
+
+      <div class="row pt-3">
+        <div class="col-3 offset-1"><%= "MEMBER" %></div>
+        <div class="col-6"><%= "次のページで入力" %></div>
+        <!--<div class="col-6">%= text_field_tag :artist_name, "", class:"form-control"%></div>-->
+      </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"OTHER" %></div>
+      <div class="col-6"><%= f.text_field :other, class:"form-control"%></div>
+    </div>
+
+    <div class="row p-5">
+      <div class="col-5 offset-5"><%= f.submit "NEXT", class: "btn btn-success" %></div>
+    </div>
+
+  <% end %>
+</div>
+
+<!--fields_forの参考コード-->
+<!--%= form_with(model: @post, local: true) do |f| %>-->
+<!--  <div class="post-area">-->
+<!--    <div class="post-area__title">-->
+<!--      "投稿内容"-->
+<!--    </div>-->
+<!--    <div class="post-area__form"></div>-->
+<!--    %= f.text_field :content %>-->
+<!--  </div>-->
+
+<!--  %= f.fields_for :tags do |tag| %>-->
+<!--    <div class="tag-area">-->
+<!--      <div class="tag-area__title">-->
+<!--        "タグ"-->
+<!--      </div>-->
+<!--      <div class="tag-area__form">-->
+<!--        %= tag.text_field :content %>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  % end %>-->
+
+<!--  %= f.submit "保存" %>-->
+<!--% end %>-->

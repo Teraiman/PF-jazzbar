@@ -1,2 +1,68 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<h1 class="title text-center p-5">会員ページ</h1>
+
+<div class="container">
+
+    <div class="row p-2">
+        <span class="col-1.8">会員情報</span>
+        <span class="col-2"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-info" %></span>
+        <span class="col-1.8  offset-6">メモ</span>
+        <span class="col-2"><%= link_to "編集する", edit_memo_admin_customer_path(@customer), class: "btn btn-info" %></span>
+    </div>
+
+  <div class="row">
+    <div class="col-7">
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="info col-3">氏名</td>
+            <td class="text-left"><%= @customer.name %></td>
+          </tr>
+          <tr>
+              <td class="info col-3">フリガナ</td>
+              <td class="text-left"><%= @customer.name_kana %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">郵便番号</td>
+            <td class="text-left"><%= @customer.postal_cord %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">住所</td>
+            <td class="text-left"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">電話番号</td>
+            <td class="text-left"><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">メールアドレス</td>
+            <td class="text-left"><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <% if @customer.is_deleted == false %>
+              <td class="text-success">有効</td>
+            <% else %>
+              <td class="text-danger">退会</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-5">
+        <div class="container-fluid bg-white">
+          <% if @customer.memo.nil? %>
+            <%= @customer.memo %>
+          <% else %>
+            <%= safe_join(@customer.memo.split("\n"),tag(:br)) %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <span class="col-1.8">予約情報</span>
+    <span class="col-2"><%= link_to "一覧表示", reserves_path, class: "btn btn-info" %></span>
+    <span class="col-1.8">お気に入り</span>
+    <span class="col-2"><%= link_to "一覧表示", artists_path, class: "btn btn-info" %></span>
+  </div>
+</div>

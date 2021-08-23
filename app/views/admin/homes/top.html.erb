@@ -1,1 +1,44 @@
-<%= render 'customer/home/'
+<div class="container p-0">
+  <div class="background-top">
+    <div class="row">
+      <div class="col-9 p-0">
+        <div id="container">
+          <div id="images">
+            <div class="image1"></div>
+            <div class="image2"></div>
+            <div class="image3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 p-3 d-flex align-items-end">
+        <table class=" table table-borderless text-center text-light">
+          <tr><th><h3>オンライン予約</h3></th></td>
+          <tr><td><%= link_to "ライブスケジュール", admin_schedules_path, class: "btn btn-dark" %></td></td>
+          <tr><td>
+            電話予約<br/>
+            000-000-0000
+          <tr></td>
+          <tr><td>
+            ※電話でのご予約は、<br/>
+            営業時間内にお願いします。
+          </td></td>
+          <tr><td><%= link_to "初めての方へ", admin_house_rules_index_path, class: "btn btn-dark" %></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table text-center">
+        <tr><th><h2>INFORMATION</h2></th></tr>
+        <% @informations.last(4).reverse_each do |information| %>
+          <tr><th><%= information.date %>     <%= link_to information.title, admin_information_path(information.id), class: "text-dark" %></th></tr><br/>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
