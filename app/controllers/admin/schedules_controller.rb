@@ -46,11 +46,12 @@ class Admin::SchedulesController < ApplicationController
     redirect_to admin_member_path(@schedule)
   end
 
-  def member_destroy
-    @schedule = Schedule.find(params[:id]).relationships
-    @schedule.relationships.destroy(schedule_member_select_params)
-    redirect_to request.referer
-  end
+  # def member_destroy
+  #   #@schedule = Schedule.find(params[:id])
+  #   #@schedule.relationships.destroy(schedule_member_select_params)
+  #   Relationship.find(delete_member_params[:id]).destroy
+  #   redirect_to request.referer
+  # end
 
   def create
     @schedule = Schedule.new(schedule_params)
@@ -77,6 +78,10 @@ class Admin::SchedulesController < ApplicationController
   def schedule_member_select_params
     params.require(:relationship).permit(:artist_id)
   end
+
+  # def delete_member_params
+  #   params.require(:relationship).permit(:id)
+  # end
 
   def artist_params
     params.require(:artist).permit(:name, :part_id)

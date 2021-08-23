@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'relationships/destroy'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :admins
@@ -67,9 +70,12 @@ end
     get 'schedules/:id/member', to: 'schedules#member', as: 'member'
     post 'schedules/:id/member', to: 'schedules#member_create', as: 'member_create'
     post 'schedules/:id/member_select', to: 'schedules#member_select', as: 'member_select'
-    delete 'schedules/:id/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
+    #delete 'schedules/:id/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
+    # delete 'schedules/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     get 'schedules/index_list', to: 'schedules#index_list'
     resources :schedules
+    resources :relationships, only: [:destroy] 
+    
 
   #管理者/アーティスト
     resources :artists

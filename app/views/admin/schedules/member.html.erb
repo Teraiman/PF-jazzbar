@@ -1,4 +1,4 @@
-<h3 class="text-center p-5">公演メンバー入力</h3>
+<h1 class="title text-center p-5">公演メンバー入力</h1>
 
 <div class="container">
   <div class="row">
@@ -28,10 +28,10 @@
           <tr>
             <td class="info col-3">MEMBER</td>
             <td class="text-left">
-              <% @schedule.artists.each do |artist| %>
-                <%= artist.name %>
-                （<%= artist.part.part_name %>）<br />
-                <!--%= link_to "削除", admin_member_destroy_path(@schedule.id), method: :delete %>-->
+              <% @schedule.relationships.each do |relationship| %>
+                <%= relationship.artist.name %>
+                （<%= relationship.artist.part.part_name %>）
+                <%= link_to "削除", admin_relationship_path(relationship), method: :delete %><br />
               <% end %>
 
               <%= form_with model: Relationship.new, url: admin_member_select_path(@schedule), local:true do |f| %>
@@ -54,7 +54,7 @@
                   </div>
                 </div>
               <% end %>
-              
+
             </td>
           </tr>
 

@@ -40,7 +40,7 @@ class Admin::ArtistsController < ApplicationController
 
   def destroy
     @artist = Artist.find(params[:id])
-    @artist.delete
+    @artist.destroy
     flash[:alert] = "削除しました"
     redirect_to admin_artists_path
   end

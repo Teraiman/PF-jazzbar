@@ -1,4 +1,4 @@
-<h3 class="text-center p-5">公演新規作成</h3>
+<h1 class="title text-center p-5">公演新規作成</h1>
 
 <div class="container">
   <%= form_with model: @schedule, url: admin_schedules_path, local:true do |f| %>
@@ -39,7 +39,7 @@
       <div class="col-6"><%= f.text_field :other, class:"form-control"%></div>
     </div>
 
-    <div class="row pt-5">
+    <div class="row p-5">
       <div class="col-5 offset-5"><%= f.submit "NEXT", class: "btn btn-success" %></div>
     </div>
 

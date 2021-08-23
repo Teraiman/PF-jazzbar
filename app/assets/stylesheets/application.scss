@@ -27,19 +27,33 @@
 }
 
 .background{
-  background-image: url(background/xv.png);
+  background-image: url(background/dark_wood);
 }
 
 // トップページスライドショー
 .image1 {
   background-image: url(880774_s.jpg);
+  background-size: 24px auto;
 }
 .image2 {
   background-image: url(1109414_s.jpg);
+  background-size: 24px auto;
 }
 .image3 {
   background-image: url(22079864_s.jpg);
+  background-size: 24px auto;
 }
 #container{
-  height: 500px;
+  height: 1000px;
+  position: relative; top: 0;
+
+}
+
+.container {
+  background-image: url(background/xv);
+  // background-color: #fffafa;
+}
+
+.title {
+  color: #ffffff;
 }
