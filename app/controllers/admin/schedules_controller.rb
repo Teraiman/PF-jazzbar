@@ -1,16 +1,11 @@
 class Admin::SchedulesController < ApplicationController
+      # binding.pry
   def index
     @schedules = Schedule.all
-    # @customer = current_customer
-
-    # binding.pry
-
-    # @schedule = Schedule.find(params[:id])
   end
 
   def index_list
     @schedules = Schedule.all
-    # @schedule = Schedule.find(params[:id])
   end
 
   def show
