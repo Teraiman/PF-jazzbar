@@ -1,12 +1,25 @@
 <h1 class="title text-center p-5">SCHEDULES</h1>
 
+<div class="row pb-5">
+  <%= link_to "LIST", admin_schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "CALENDAR", admin_schedules_path, class: "col-1 btn btn-outline-light" %>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
+
       <%= link_to "イベントを追加", new_admin_schedule_path %>
+
       <div class="bg-light">
-        <%= month_calendar schedule: @schedules do |date| %>
+        <%= month_calendar(attribute: :date, end_attribute: :date, events: @schedules) do |date, schedules| %>
           <%= date.day %>
+          <% schedules.each do |schedule| %>
+            <div class="text-center">
+              <%= attachment_image_tag schedule, :image, :fill, 100, 100, fomat: 'jpeg' %><br/>
+              <%= link_to schedule.title, admin_schedule_path(schedule.id), class: "btn btn-outline-dark btn-sm" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

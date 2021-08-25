@@ -1,0 +1,30 @@
+<!--部分テンプレート除外-->
+
+<!--<h1 class="title text-center p-5">INFORMATION</h1>-->
+<!--<div class="container">-->
+<!--  <div class="row pt-5">-->
+<!--    <div class="col-2 offset-10">-->
+<!--      %= link_to "新規作成", new_admin_information_path, class: "btn btn-info" %>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--部分テンプレート除外-->
+
+  <div class="row p-5">
+    <table class="table table-hover">
+      <!--each文を使う-->
+      <% @informations.each do |information| %>
+          <tr>
+            <td><%= information.date %></td>
+            <td>
+              <%= link_to admin_information_path(information.id) do %>
+                <%= information.title %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      <!--each文を使う-->
+    </table>
+      <%= paginate @informations %>
+  </div>
+</div>

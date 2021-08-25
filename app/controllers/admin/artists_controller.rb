@@ -2,7 +2,7 @@ class Admin::ArtistsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @artists = Artist.all.page(params[:page]).per(10)
+    @artists = Artist.all.page(params[:page]).per(10).order("name ASC")
     @artist = Artist.new
   end
 

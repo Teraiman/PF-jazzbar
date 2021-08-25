@@ -1,1 +1,46 @@
-<h1 class="title text-center p-5">SCHEDULES_list</h1>
+<h1 class="title text-center p-5">SCHEDULES</h1>
+
+<div class="row pb-5">
+  <%= link_to "LIST", admin_schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "CALENDAR", admin_schedules_path, class: "col-1 btn btn-outline-light" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th scope="col">DATE</th>
+          <th scope="col">TITLE</th>
+          <th scope="col">TIME</th>
+          <th scope="col">MEMBER</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.date %></td>
+            <td><%= schedule.title %></td>
+            <td><%= schedule.time %></td>
+            <td>
+              <% schedule.artists.each do |artist| %>
+                <%= artist.name %>    (<%= artist.part.part_name %>)<br/>
+              <% end %>
+            <td>
+
+
+
+
+            <!--<td>-->
+            <!--  % @schedule.relationships.each do |relationship| %>-->
+            <!--    %= relationship.artist.name %>-->
+            <!--    （%= relationship.artist.part.part_name %>）-->
+            <!--  % end %>-->
+            <!--</td>-->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
