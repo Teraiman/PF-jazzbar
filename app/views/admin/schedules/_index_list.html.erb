@@ -1,0 +1,124 @@
+<h1 class="title text-center p-5">SCHEDULES</h1>
+
+<!--管理者ログイン中########################################################################-->
+<% if admin_signed_in? %>
+
+<div class="row pb-5">
+  <%= link_to "LIST", admin_schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "CALENDAR", admin_schedules_path, class: "col-1 btn btn-outline-light" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>TITLE</th>
+          <th>TIME</th>
+          <th>MEMBER</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.date %></td>
+            <td>
+              <%= link_to schedule.title, admin_schedule_path(schedule.id), class: "btn btn-outline-dark btn-sm" %><br/>
+              <%= schedule.other %>
+            </td>
+            <td><%= schedule.time %></td>
+            <td>
+              <% schedule.artists.each do |artist| %>
+                <%= artist.name %>     (<%= artist.part.part_name %>)<br/>
+              <% end %>
+            <td/>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--会員ログイン中##########################################################################-->
+<% elsif customer_signed_in? %>
+<div class="row pb-5">
+  <%= link_to "LIST", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "CALENDAR", schedules_path, class: "col-1 btn btn-outline-light" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>TITLE</th>
+          <th>TIME</th>
+          <th>MEMBER</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.date %></td>
+            <td>
+              <%= link_to schedule.title, schedule_path(schedule.id), class: "btn btn-outline-dark btn-sm" %><br/>
+              <%= schedule.other %>
+            </td>
+            <td><%= schedule.time %></td>
+            <td>
+              <% schedule.artists.each do |artist| %>
+                <%= artist.name %>     (<%= artist.part.part_name %>)<br/>
+              <% end %>
+            <td/>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--ログインしていない時####################################################################-->
+<% else %>
+<div class="row pb-5">
+  <%= link_to "LIST", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "CALENDAR", schedules_path, class: "col-1 btn btn-outline-light" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>TITLE</th>
+          <th>TIME</th>
+          <th>MEMBER</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.date %></td>
+            <td>
+              <%= link_to schedule.title, schedule_path(schedule.id), class: "btn btn-outline-dark btn-sm" %><br/>
+              <%= schedule.other %>
+            </td>
+            <td><%= schedule.time %></td>
+            <td>
+              <% schedule.artists.each do |artist| %>
+                <%= artist.name %>     (<%= artist.part.part_name %>)<br/>
+              <% end %>
+            <td/>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% end %>

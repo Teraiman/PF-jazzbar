@@ -3,7 +3,7 @@ class Admin::CustomersController < ApplicationController
 
   def index
     #@customers = Customer.all
-    @customers = Customer.page(params[:page]).reverse_order
+    @customers = Customer.page(params[:page]).order("name DESC")
   end
 
   def show

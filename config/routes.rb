@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'relationships/destroy'
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :admins
@@ -31,7 +28,7 @@ scope module: :customer do
 
   #会員/予約
     get 'reserves/finish', to: 'reserves#finish'
-    resources :reserves, only: [:new, :index, :show]
+    resources :reserves, only: [:new, :index, :show, :create, :update, :destroy]
 
   #会員/スケジュール
     get 'schedules/index_list'
@@ -74,8 +71,9 @@ end
     # delete 'schedules/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     get 'schedules/index_list', to: 'schedules#index_list'
     resources :schedules
-    resources :relationships, only: [:destroy] 
-    
+    resources :relationships, only: [:destroy]
+    #管理者/メンバー削除
+    get 'relationships/destroy'
 
   #管理者/アーティスト
     resources :artists
@@ -91,6 +89,7 @@ end
 
   #管理者/ハウスルール
     get 'house_rules/index'
+
 
   end
   ########## 管理者 ##########

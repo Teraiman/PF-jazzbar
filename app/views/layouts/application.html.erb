@@ -79,6 +79,7 @@
                 <%= link_to "House rule", admin_house_rules_index_path, class: "nav-item nav-link" %>
                 <%= link_to "Access", admin_access_path, class: "nav-item nav-link" %>
                 <%= link_to "Artist", admin_artists_path, class: "nav-item nav-link" %>
+                <%= link_to "Part", admin_part_index_path, class: "nav-item nav-link" %>
               </div>
             </div>
 
@@ -98,6 +99,7 @@
                 <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
                 <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
                 <%= link_to "Access", access_path, class: "nav-item nav-link" %>
+                <%= link_to "Artist", artists_path, class: "nav-item nav-link" %>
                 <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
               </div>
             </div>
@@ -154,3 +156,17 @@
   <!--フッター-->
   </body>
 </html>
+
+<!--%= render partial: '' %>-->
+
+
+<!--管理者ログイン中########################################################################-->
+<%# if admin_signed_in? %>
+
+<!--会員ログイン中##########################################################################-->
+<%# elsif customer_signed_in? %>
+
+<!--ログインしていない時####################################################################-->
+<%# else %>
+
+<%# end %>

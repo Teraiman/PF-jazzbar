@@ -1,2 +1,51 @@
-<h1>Admin::Schedules#edit</h1>
-<p>Find me in app/views/admin/schedules/edit.html.erb</p>
+<h1 class="title text-center p-5">公演情報編集</h1>
+
+<div class="container">
+  <%= form_with model: @schedule, url: admin_schedule_path(@schedule.id), local:true, method: :patch do |f| %>
+
+    <div class="schedule-image text-center pt-5">
+      <%= attachment_image_tag @schedule, :image, width: '50%', height: '50%', fomat: 'jpeg' %>
+    </div>
+    <div class="row pt-5">
+      <div class="col-3 offset-1"><%= f.label :"IMAGE" %></div>
+      <div class="col-6"><%= f.attachment_field :image %></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"TITLE" %></div>
+      <div class="col-6"><%= f.text_field :title, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"DATE" %></div>
+      <div class="col-6"><%= f.date_field :date, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"TIME" %></div>
+      <div class="col-6"><%= f.text_field :time, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"CHARGE" %></div>
+      <div class="col-6"><%= f.text_field :charge, class:"form-control"%></div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= "MEMBER" %></div>
+      <div class="col-6"><%= "次のページで入力" %></div>
+      <!--<div class="col-6">%= text_field_tag :artist_name, "", class:"form-control"%></div>-->
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-3 offset-1"><%= f.label :"OTHER" %></div>
+      <div class="col-6"><%= f.text_field :other, class:"form-control"%></div>
+    </div>
+
+    <div class="row p-5">
+      <div class="col-5 offset-5"><%= f.submit "保存して次の画面へ", class: "btn btn-success" %></div>
+    </div>
+
+  <% end %>
+  </div>
+</div>

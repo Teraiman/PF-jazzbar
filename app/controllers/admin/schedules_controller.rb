@@ -1,4 +1,5 @@
 class Admin::SchedulesController < ApplicationController
+      # binding.pry
   def index
     @schedules = Schedule.all
   end
@@ -9,7 +10,6 @@ class Admin::SchedulesController < ApplicationController
 
   def show
     @schedule = Schedule.find(params[:id])
-    # @artist = artist
   end
 
   def edit
@@ -19,7 +19,6 @@ class Admin::SchedulesController < ApplicationController
   def new
     @schedule = Schedule.new
     @schedule.artists.build
-
     @time = "OPEN：18:00~ / START：19:00~"
     @charge = "前売3,000円 / 当日3,500円"
   end
@@ -46,13 +45,6 @@ class Admin::SchedulesController < ApplicationController
     redirect_to admin_member_path(@schedule)
   end
 
-  # def member_destroy
-  #   #@schedule = Schedule.find(params[:id])
-  #   #@schedule.relationships.destroy(schedule_member_select_params)
-  #   Relationship.find(delete_member_params[:id]).destroy
-  #   redirect_to request.referer
-  # end
-
   def create
     @schedule = Schedule.new(schedule_params)
     artist = Artist.find_or_create_by(name: params[:artist_name])
@@ -65,6 +57,13 @@ class Admin::SchedulesController < ApplicationController
   end
 
   def update
+    @schedule = Schedule.find(params[:id])
+    if @schedule.update(schedule_params)
+      redirect_to admin_member_path(@schedule)
+    else
+      flash[:alert] = "更新できませんでした"
+      render :edit
+    end
   end
 
   def destroy
@@ -78,10 +77,6 @@ class Admin::SchedulesController < ApplicationController
   def schedule_member_select_params
     params.require(:relationship).permit(:artist_id)
   end
-
-  # def delete_member_params
-  #   params.require(:relationship).permit(:id)
-  # end
 
   def artist_params
     params.require(:artist).permit(:name, :part_id)

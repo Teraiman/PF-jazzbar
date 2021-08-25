@@ -1,7 +1,7 @@
 class Admin::HomesController < ApplicationController
   def top
     @informations = Information.all
-    # @schedule = Schedule.
+    @schedule = Schedule.where(date: Date.today).order(time: "ASC").first
   end
 
   def about
