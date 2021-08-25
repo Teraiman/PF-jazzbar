@@ -62,6 +62,13 @@ class Admin::SchedulesController < ApplicationController
   end
 
   def update
+    @schedule = Schedule.find(params[:id])
+    if @schedule.update(schedule_params)
+      redirect_to admin_member_path(@schedule)
+    else
+      flash[:alert] = "更新できませんでした"
+      render :edit
+    end
   end
 
   def destroy

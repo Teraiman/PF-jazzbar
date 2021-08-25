@@ -3,6 +3,10 @@
 <div class="container">
   <%= form_with model: @schedule, url: admin_schedules_path, local:true do |f| %>
 
+    <!--プレビュー機能効かない-->
+    <!--<div class="schedule-image text-center pt-5">-->
+    <!--  <%#= attachment_image_tag @schedule, :image, width: '50%', height: '50%', fomat: 'jpeg' %>-->
+    <!--</div>-->
     <div class="row pt-5">
       <div class="col-3 offset-1"><%= f.label :"IMAGE" %></div>
       <div class="col-6"><%= f.attachment_field :image %></div>

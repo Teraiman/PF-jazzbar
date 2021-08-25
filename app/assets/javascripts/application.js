@@ -67,3 +67,12 @@ $(function(){
     reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
   });
 });
+
+// // 時間あれば削除ボタンを非同期通信化
+// $(function(){
+//   $('#d-btn').on('click', function() {
+//     $ajax({
+      
+//     })
+//   });
+// });

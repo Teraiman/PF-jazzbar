@@ -1,8 +1,9 @@
-<!--管理者ログイン中-->
+<!--##########################################管理者ログイン中##########################################-->
 <% if admin_signed_in? %>
 <div class="container p-0">
   <div class="background-top">
     <div class="row">
+      
       <div class="col-9 p-0">
         <div id="container">
           <div id="images">
@@ -12,6 +13,7 @@
           </div>
         </div>
       </div>
+      
       <div class="col-3 p-3 d-flex align-items-end">
         <table class=" table table-borderless text-center text-light">
           <tr><th><h3>オンライン予約</h3></th></td>
@@ -27,9 +29,20 @@
           <tr><td><%= link_to "初めての方へ", admin_house_rules_index_path, class: "btn btn-dark" %></td></tr>
         </table>
       </div>
+      
     </div>
   </div>
 </div>
+
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-12">-->
+<!--      <h1 class="text-center pt-5">Today's Live!</h1>-->
+<!--        <%#= render  partial: 'admin/schedule/show' %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -42,17 +55,13 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-<!--会員ログイン中-->
+<!--##################################################################################################-->
+<!--##########################################会員ログイン中##########################################-->
 <% elsif customer_signed_in? %>
 <div class="container p-0">
   <div class="background-top">
     <div class="row">
+      
       <div class="col-9 p-0">
         <div id="container">
           <div id="images">
@@ -62,6 +71,7 @@
           </div>
         </div>
       </div>
+      
       <div class="col-3 p-3 d-flex align-items-end">
         <table class=" table table-borderless text-center text-light">
           <tr><th><h3>オンライン予約</h3></th></td>
@@ -77,9 +87,11 @@
           <tr><td><%= link_to "初めての方へ", house_rules_index_path, class: "btn btn-dark" %></td></tr>
         </table>
       </div>
+      
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -92,17 +104,13 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-<!--ログインしていない時-->
+<!--########################################################################################################-->
+<!--##########################################ログインしていない時##########################################-->
 <% else %>
 <div class="container p-0">
   <div class="background-top">
     <div class="row">
+      
       <div class="col-9 p-0">
         <div id="container">
           <div id="images">
@@ -112,6 +120,7 @@
           </div>
         </div>
       </div>
+      
       <div class="col-3 p-3 d-flex align-items-end">
         <table class=" table table-borderless text-center text-light">
           <tr><th><h3>オンライン予約</h3></th></td>
@@ -127,9 +136,11 @@
           <tr><td><%= link_to "初めての方へ", house_rules_index_path, class: "btn btn-dark" %></td></tr>
         </table>
       </div>
+      
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -142,4 +153,5 @@
     </div>
   </div>
 </div>
+
 <% end %>

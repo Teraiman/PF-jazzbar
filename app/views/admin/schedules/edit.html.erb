@@ -1,7 +1,7 @@
 <h1 class="title text-center p-5">公演情報編集</h1>
 
 <div class="container">
-  <%= form_with model: @schedule, url: admin_schedule_path, local:true, method: :patch do |f| %>
+  <%= form_with model: @schedule, url: admin_schedule_path(@schedule.id), local:true, method: :patch do |f| %>
 
     <div class="schedule-image text-center pt-5">
       <%= attachment_image_tag @schedule, :image, width: '50%', height: '50%', fomat: 'jpeg' %>
