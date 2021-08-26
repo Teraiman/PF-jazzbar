@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :customer do
+    get 'favorites/create'
+    get 'favorites/destroy'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :admins
@@ -23,7 +27,13 @@ scope module: :customer do
       collection do
         get 'quitcheck'
         patch 'quit'
+        get 'favorites'
       end
+    end
+
+  #会員/アーティスト
+    resources :artists, only: [:index] do
+      resource :favorites, only: [:create, :destroy]
     end
 
   #会員/予約
@@ -37,13 +47,12 @@ scope module: :customer do
   #会員/インフォメーション
     resources :informations, only: [:index, :show]
 
-  #会員/アーティスト
-    resources :artists, only: [:index]
-
   #会員/ハウスルール
     get 'house_rules/index'
 
-  #notification項目の有無？
+  #会員/お気に入り
+    get 'favorites/index'
+    # get 'favorite/destroy'
 end
   ########## 会員 ##########
 

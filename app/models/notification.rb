@@ -1,6 +1,0 @@
-class Notification < ApplicationRecord
-
-
-
-end
-

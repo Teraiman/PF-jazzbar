@@ -4,10 +4,10 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :notifications, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :reserves, dependent: :destroy
   has_many :schedules, through: :reserves
-  has_many :artists, through: :notifications
+  has_many :artists, through: :favorites
 
 
   validates :name, presence: true
