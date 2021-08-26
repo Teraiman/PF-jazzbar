@@ -13,15 +13,17 @@ class Customer::CustomersController < ApplicationController
   end
 
   def show
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
+    @artist = @customer.artists
+    
   end
 
   def edit
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:alert] = "登録しました"
       redirect_to customer_path(@customer)

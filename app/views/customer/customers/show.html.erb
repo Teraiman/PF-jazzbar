@@ -1,13 +1,13 @@
-<h2 class="text-center">マイページ</h2>
+<h1 class="title text-center p-5">マイページ</h1>
 <div class="container">
-  
+
   <div class="row p-2">
       <span class="col-1.8">会員情報</span>
       <span class="col-2">
         <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-info" %>
       </span>
   </div>
-  
+
   <div class="row">
     <div class="col-7">
       <table class="table table-bordered">
@@ -40,11 +40,12 @@
       </table>
     </div>
   </div>
-  
+
   <div class="row p-2">
     <span class="col-1.8">予約情報</span>
     <span class="col-2"><%= link_to "一覧表示", reserves_path, class: "btn btn-info" %></span>
     <span class="col-1.8">お気に入り</span>
-    <span class="col-2"><%= link_to "一覧表示", artists_path, class: "btn btn-info" %></span>
+    <span class="col-2"><%= link_to "一覧表示", favorites_index_path, class: "btn btn-info" %></span>
   </div>
+
 </div>

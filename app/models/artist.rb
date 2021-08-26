@@ -1,8 +1,8 @@
 class Artist < ApplicationRecord
-  has_many :notifications
+  has_many :favorites, dependent: :destroy
   has_many :relationships
   has_many :schedules, through: :relationships
-  has_many :customers, through: :notifications
+  has_many :customers, through: :favorites
 
   belongs_to :part
 

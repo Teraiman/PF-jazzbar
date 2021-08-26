@@ -11,10 +11,13 @@ class Customer::ReservesController < ApplicationController
   end
 
   def index
-    @reserves.all.order("schedule_id.date DESC")
+    reserve = Reserve.where(customer_id: current_customer)
+    @reserves = reserve.all
+    # @reserves.all.order("schedule_id.date DESC")
   end
 
   def show
+    @reserve = Reserve.find(params[:id])
   end
 
   def create
@@ -33,9 +36,21 @@ class Customer::ReservesController < ApplicationController
   end
 
   def update
+    @reserve = Reserve.find(params[:id])
+    if @reserve.update(reserve_params)
+      flash[:alert] = "更新しました"
+      redirect_to reserves_path
+    else
+      flash[:alert] = "更新できませんでした"
+      render action: :show
+    end
   end
 
   def destroy
+    @reserve = Reserve.find(params[:id])
+    @reserve.destroy
+    flash[:alert] = "削除しました"
+    redirect_to reserves_path
   end
 
   private
