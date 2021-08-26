@@ -1,2 +1,6 @@
 class Notification < ApplicationRecord
+
+
+
 end
+
