@@ -25,6 +25,7 @@
           <tr>
             <td><%= link_to artist.name, edit_admin_artist_path(artist.id) %></td>
             <td><%= artist.part.part_name %></td>
+            <td><%= render 'customer/favorites/favorite', artist: artist %></td>
           </tr>
       <% end %>
       <!--each文を使う-->
@@ -46,7 +47,7 @@
       <!--each文を使う-->
       <% @artists.each do |artist| %>
           <tr>
-            <td><%= link_to artist.name, edit_admin_artist_path(artist.id) %></td>
+            <td><%= artist.name %></td>
             <td><%= artist.part.part_name %></td>
             <td><%= render 'customer/favorites/favorite', artist: artist %></td>
           </tr>
@@ -62,11 +63,17 @@
 <div class="container">
   <div class="row p-5">
     <table class="table table-hover">
+          <tr>
+            <th>NAME</th>
+            <th>PERT</th>
+            <th>FAVORITE</th>
+          </tr>
       <!--each文を使う-->
       <% @artists.each do |artist| %>
           <tr>
-            <td><%= link_to artist.name, edit_admin_artist_path(artist.id) %></td>
+            <td><%= artist.name %></td>
             <td><%= artist.part.part_name %></td>
+            <td><%= render 'customer/favorites/favorite', artist: artist %></td>
           </tr>
       <% end %>
       <!--each文を使う-->

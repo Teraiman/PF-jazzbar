@@ -3,7 +3,7 @@ class Customer::FavoritesController < ApplicationController
   before_action :authenticate_customer!   # ログイン中のカスタマのみに許可（未ログインなら、ログイン画面へ移動）
 
   def index
-    favorites = Favorite.where(customer_id: current_customer.id).pluck(:artist_id)  # ログイン中のカスタマのお気に入りのartist_idカラムを取得
+    favorites = Favorite.where(customer_id: current_customer.id).pluck(:artist_id)# ログイン中のカスタマのお気に入りのartist_idカラムを取得
     @favorite_list = Artist.find(favorites)     # artistsテーブルから、お気に入り登録済みのレコードを取得
   end
 
