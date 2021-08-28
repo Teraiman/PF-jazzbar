@@ -133,14 +133,14 @@
 
   <!--ヘッダー-->
 
-  <div class="background pb-5">
+  <div class="background">
     <%= yield %>
   </div>
 
   <!--フッター-->
     <footer class="bg-dark text-white">
 
-        <div class="text-center">
+        <div class="text-center p-5">
           <span>Follow us</span>
           <%= link_to root_path do %>
             <span><i class="fab fa-twitter fa-3x" style="color: #00acee;"></i></span>
@@ -152,7 +152,7 @@
             <span><i class="fab fa-facebook fa-3x" style="color: #3b5998;"></i></span>
           <% end %>
         </div>
-        <div class="text-center">Copyright © 2021 Jazz bar Inc. All Rights Reserved.</div>
+        <div class="text-center pb-3">Copyright © 2021 Jazz bar Inc. All Rights Reserved.</div>
       </div>
     </footer>
   <!--フッター-->

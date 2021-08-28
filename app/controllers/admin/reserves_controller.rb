@@ -6,31 +6,36 @@ class Admin::ReservesController < ApplicationController
   end
 
   def edit
+    @reserve = Reserve.find(params[:id])
+  end
+
+  def new
+    @reserve = Reserve.new
+    @reserve.schedule_id = params[:format]
   end
 
   def create
-    @reserve = current_customer.reserves.create(reserve_params)
-    # if 予約人数(params[:count]) + Reserve予約済み人数 <= Scheduleのキャパシティ
-    #   保存できる。
-    # else
-    #   予約失敗。満席です。もしくは人数を減らせばできるかも。
-    # end
-    if @reserve.save
-      flash[:alert] = "予約しました"
+    @reserve = Reserve.new(reserve_params)
+    @reserve.admin_id = current_admin.id
+    
+    # byebug
+    if @reserve.save!
+      flash[:alert] = "作成しました"
+      redirect_to admin_reserve_path(@reserve.id)
     else
-      flash[:alert] = "このライブはすでに予約済みです"
+      flash[:alert] = "作成できませんでした"
+      render action: :new
     end
-    redirect_to reserves_finish_path
   end
 
   def update
     @reserve = Reserve.find(params[:id])
     if @reserve.update(reserve_params)
       flash[:alert] = "更新しました"
-      redirect_to reserves_path
+      redirect_to admin_reserve_path(@reserve.id)
     else
       flash[:alert] = "更新できませんでした"
-      render action: :show
+      render action: :edit
     end
   end
 
@@ -38,11 +43,11 @@ class Admin::ReservesController < ApplicationController
     @reserve = Reserve.find(params[:id])
     @reserve.destroy
     flash[:alert] = "削除しました"
-    redirect_to reserves_path
+    redirect_to admin_reserve_path(@reserve.id)
   end
 
   private
   def reserve_params
-    params.require(:reserve).permit(:count, :customer_id, :schedule_id)
+    params.require(:reserve).permit(:name, :count, :customer_id, :schedule_id)
   end
 end
