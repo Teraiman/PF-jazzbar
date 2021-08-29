@@ -1,0 +1,35 @@
+<h1 class="title text-center p-5">予約人数</h1>
+
+<div class="container">
+  <%= form_with model: @reserve, url: reserves_path, local: true do |f| %>
+
+    <div class="row pt-5">
+      <h3 class="col-12 text-center">ご来店される人数を選択してください。</h3>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 text-center">
+        <!-- 予約できる人数を上限にしてcountを作る。予約可能人数が１０人より多ければ最大は９-->
+        <%= f.select :count, [
+        ["１", "1"],
+        ["２", "2"],
+        ["３", "3"],
+        ["４", "4"],
+        ["５", "5"],
+        ["６", "6"],
+        ["７", "7"],
+        ["８", "8"],
+        ["９", "9"]
+        ], include_blank: "選択して下さい" %><br/>
+        ※10名を超える場合はお手数ですが電話でのご予約をお願い致します。
+        </div>
+    </div>
+
+
+
+    <div class="row p-5">
+      <%= f.hidden_field :schedule_id, :value => @reserve.schedule_id %>
+      <div class="col-12 text-center"><%= f.submit "予約する", class: "btn btn-success" %></div>
+    </div>
+
+  <% end %>
+</div>

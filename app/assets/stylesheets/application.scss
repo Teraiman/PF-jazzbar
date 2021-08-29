@@ -10,7 +10,59 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "simple_calendar";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  background-image: url(background/dark_wood);
+}
+
+.background-top {
+  background-image: url(background/dark_wood);
+}
+
+// トップページスライドショー
+.image1 {
+  background-image: url(880774_s.jpg);
+}
+.image2 {
+  background-image: url(1109414_s.jpg);
+}
+.image3 {
+  background-image: url(22079864_s.jpg);
+}
+#container{
+  height: 400px;
+  position: relative; top:0px; left:15px;
+  z-index:9999;
+  // width: 60%;
+  // margin-left: 30%;
+  // // background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.container {
+  background-image: url(background/xv);
+  // background-color: #fffafa;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.center {
+
+}

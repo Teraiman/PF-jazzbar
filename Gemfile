@@ -44,6 +44,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -68,11 +69,16 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise"
 gem "kaminari"
+
+# 画像投稿用gem
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+
+# 画像加工用（サイズ調整など）gem
 gem "refile-mini_magick"
+
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'font-awesome-sass'
-gem 'pry-byebug'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+gem "simple_calendar", "~> 2.4"
+

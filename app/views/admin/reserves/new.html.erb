@@ -1,0 +1,33 @@
+<h1 class="title text-center p-5">新規予約</h1>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-12">
+      <%= form_with model: @reserve, url: admin_schedule_reserves_path, local: true do |f| %>
+        <%#= form_with model: [@schedule, @reserve],url: admin_schedule_reserves_path, local: true  do |f| %>
+
+          <table class="form-group table table-borderless col-8">
+            <tr>
+              <th>名前</th>
+              <td><%= f.text_field :name %></td>
+              <td>
+                <%= f.select :count, [
+                ["１", "1"],
+                ["２", "2"],
+                ["３", "3"],
+                ["４", "4"],
+                ["５", "5"],
+                ["６", "6"],
+                ["７", "7"],
+                ["８", "8"],
+                ["９", "9"]
+                ], include_blank: "選択して下さい" %>
+              </td>
+              <%= f.hidden_field :schedule_id, :value => @schedule %>
+              <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+            </tr>
+          </table>
+        <% end %>
+      <%# end %>
+    </div>
+  </div>
+</div>

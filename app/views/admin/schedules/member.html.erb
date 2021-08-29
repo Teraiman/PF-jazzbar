@@ -1,0 +1,80 @@
+<h1 class="title text-center p-5">公演メンバー入力</h1>
+
+<div class="container">
+  <div class="schedule-image text-center pt-5">
+    <%= attachment_image_tag @schedule, :image, width: '50%', height: '50%', fomat: 'jpeg' %>
+  </div>
+  <div class="row p-5">
+    <div class="col-8 offset-2">
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="info col-3">TITLE</td>
+            <td class="text-left"><%= @schedule.title %></td>
+          </tr>
+          <tr>
+              <td class="info col-3">DATE</td>
+              <td class="text-left"><%= @schedule.date %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">TIME</td>
+            <td class="text-left"><%= @schedule.time %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">CHARGE</td>
+            <td class="text-left"><%= @schedule.charge %></td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">MEMBER</td>
+            <td class="text-left">
+              <% @schedule.relationships.each do |relationship| %>
+                <%= relationship.artist.name %>
+                （<%= relationship.artist.part.part_name %>）
+                
+                <%= link_to "削除", admin_relationship_path(relationship), method: :delete %><br />
+              <% end %>
+
+              <%= form_with model: Relationship.new, url: admin_member_select_path(@schedule), local:true do |f| %>
+                <%= f.label :Artistを選択 %>
+                <%= f.collection_select(:artist_id, Artist.all.order('name ASC'), :id, :name) %>
+                <%= f.submit "追加" %>
+              <% end %>
+
+              <%= form_with model: Artist.new, url: admin_member_create_path(@schedule), local:true do |f| %>
+                <div class="row">
+                  <div class="col-12">
+                    <table class="form-group table table-borderless col-8">
+                      <tr>
+                        <td><%= f.text_field :name %></td>
+                              <!--保存先のカラム名, 表示するモデル名の.all, 保存先のカラムに入れたい表示するモデルのカラム名, 表示するモデルの表示したいカラム-->
+                        <td><%= f.collection_select :part_id, Part.all, :id, :part_name, include: "選択してください" %></td>
+                        <td><%= f.submit "新規登録", class: "btn btn-info" %></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">OTHER</td>
+            <td class="text-left"><%= @schedule.other %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <!--<span class="col-1 offset-5"><%#= link_to "戻る", :back, class: "btn btn-info" %></span>-->
+    <!--<span class="col-2"><%#= link_to "予約を追加する", new_admin_reserf_path, class: "btn btn-info" %></span>-->
+    <!--<span class="col-2"><%#= link_to "予約の確認", admin_reserf_path, class: "btn btn-info" %></span>-->
+    <span class="col-2 offset-10"><%= link_to "作成完了", admin_schedules_path, class: "btn btn-success" %></span>
+
+  </div>
+</div>
+  </div>
+</div>
