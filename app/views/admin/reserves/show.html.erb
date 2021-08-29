@@ -1,2 +1,57 @@
-<h1>Admin::Reserves#show</h1>
-<p>Find me in app/views/admin/reserves/show.html.erb</p>
+<!--<h1>Admin::Reserves#show</h1>-->
+<!--<p>Find me in app/views/admin/reserves/show.html.erb</p>-->
+
+<h1 class="title text-center p-5">予約一覧</h1>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-lignt">
+
+          <tr>
+            <th>Name</th>
+            <th>人数</th>
+            <th>メモ</th>
+          </tr>
+
+        <% @schedule.reserves.each do |reserve| %>
+          <tr>
+            <td>
+              <% if reserve.customer_id.present? %>
+                <%= link_to admin_customer_path(reserve.customer_id) do %>
+                  <%= reserve.customer.name %>
+                <% end %>
+              <% else %>
+                <%= reserve.name %>
+              <% end %>
+            </td>
+
+            <td><%= reserve.count %></td>
+
+            <td>
+              <%if reserve.customer%>
+                <% if reserve.customer.memo.blank? %>
+                  <i class="far fa-square"></i>
+                <% else %>
+                  <i class="far fa-check-square"></i>
+                <% end %>
+
+              <%else%>
+                <i class="far fa-square"></i>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to "変更", edit_admin_schedule_reserve_path(@reserve), class: "btn btn-info" %>
+            </td>
+
+          </tr>
+        <% end %>
+
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+
+

@@ -1,9 +1,35 @@
 <div id="favorite_<%= artist.id %>">
 
+<!--管理者ログイン中########################################################################-->
+<% if admin_signed_in? %>
   <!--お気に入り未登録の時-->
   <% if !Favorite.exists?(customer: current_customer, artist_id: artist.id) %>
     <%= link_to artist_favorites_path(artist), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
-      <div class="i far fa-thumbs-up">
+      <div class="far fa-star">
+        <span>未登録</span>
+        <!--お気に入り登録数-->
+        <%= artist.favorites.length %>
+      </div>
+    <% end %>
+
+  <% else %>
+      <!--お気に入り登録済みの時-->
+    <%= link_to artist_favorites_path(artist), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+      <div class="fas fa-star">
+        <span>登録済み</span>
+        <!--お気に入り登録数-->
+        <%= artist.favorites.length %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!--会員ログイン中##########################################################################-->
+<% elsif customer_signed_in? %>
+  <!--お気に入り未登録の時-->
+  <% if !Favorite.exists?(customer: current_customer, artist_id: artist.id) %>
+    <%= link_to artist_favorites_path(artist), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
+      <div class="far fa-star">
         <span>未登録</span>
         <!--お気に入り登録数-->
         <%#= artist.favorites.length %>
@@ -13,7 +39,7 @@
   <% else %>
       <!--お気に入り登録済みの時-->
     <%= link_to artist_favorites_path(artist), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
-      <div class="i far fa-thumbs-up">
+      <div class="fas fa-star">
         <span>登録済み</span>
         <!--お気に入り登録数-->
         <%#= artist.favorites.length %>
@@ -22,3 +48,28 @@
   <% end %>
 </div>
 
+<!--ログインしていない時####################################################################-->
+<% else %>
+  <!--お気に入り未登録の時-->
+  <% if !Favorite.exists?(customer: current_customer, artist_id: artist.id) %>
+    <%= link_to artist_favorites_path(artist), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
+      <div class="far fa-star">
+        <span>未登録</span>
+        <!--お気に入り登録数-->
+        <%#= artist.favorites.length %>
+      </div>
+    <% end %>
+
+  <% else %>
+      <!--お気に入り登録済みの時-->
+    <%= link_to artist_favorites_path(artist), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+      <div class="fas fa-star">
+        <span>登録済み</span>
+        <!--お気に入り登録数-->
+        <%#= artist.favorites.length %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% end %>

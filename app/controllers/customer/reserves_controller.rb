@@ -11,9 +11,20 @@ class Customer::ReservesController < ApplicationController
   end
 
   def index
-    reserve = Reserve.where(customer_id: current_customer)
-    @reserves = reserve.all
+    schedules = Schedule.where("date >= ?", Time.current.to_date)
+    # schedules == Schedule.where("date >= ?", Time.current.to_date) # 一緒
+    # schedules # => [ {id: 1, title... }, { id: 2...} ]
+    # schedules.pluck # => [1, 2 ...]
+    # @reserves = Reserve.where(customer_id: current_customer, schedule_id: [1, 2])
+    # byebug
+    @reserves = Reserve.where(customer_id: current_customer, schedule_id: schedules.pluck(:id))
+
+
+    # Schedule.where(id: [1, 2, 3])
+    # Reserve.where(customer_id: 5, schedule_id: [5])
+
     # @reserves.all.order("schedule_id.date DESC")
+
   end
 
   def show
@@ -21,8 +32,9 @@ class Customer::ReservesController < ApplicationController
   end
 
   def create
-    @reserve = current_customer.reserves.create(reserve_params)
-    # if 予約人数(params[:count]) + Reserve予約済み人数 <= Scheduleのキャパシティ
+    @reserve = Reserve.new(reserve_params)
+    @reserve.customer_id = current_customer.id
+    # @reserve.schedule_id = params[:format]    # if 予約人数(params[:count]) + Reserve予約済み人数 <= Scheduleのキャパシティ
     #   保存できる。
     # else
     #   予約失敗。満席です。もしくは人数を減らせばできるかも。
@@ -30,6 +42,7 @@ class Customer::ReservesController < ApplicationController
     if @reserve.save
       flash[:alert] = "予約しました"
     else
+      # byebug
       flash[:alert] = "このライブはすでに予約済みです"
     end
     redirect_to reserves_finish_path
@@ -55,6 +68,6 @@ class Customer::ReservesController < ApplicationController
 
   private
   def reserve_params
-    params.require(:reserve).permit(:count, :customer_id, :schedule_id)
+    params.require(:reserve).permit(:count, :schedule_id)
   end
 end

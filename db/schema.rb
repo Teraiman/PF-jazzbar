@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_062649) do
+ActiveRecord::Schema.define(version: 2021_08_29_045144) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,14 +65,6 @@ ActiveRecord::Schema.define(version: 2021_08_26_062649) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "artist_id", null: false
-    t.boolean "already_read", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "parts", force: :cascade do |t|
     t.string "part_name", null: false
     t.datetime "created_at", null: false
@@ -87,11 +79,14 @@ ActiveRecord::Schema.define(version: 2021_08_26_062649) do
   end
 
   create_table "reserves", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.integer "customer_id"
     t.integer "schedule_id", null: false
     t.integer "count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "admin_id"
+    t.integer "telephone_number"
   end
 
   create_table "schedules", force: :cascade do |t|

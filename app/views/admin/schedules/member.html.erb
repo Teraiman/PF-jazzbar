@@ -32,7 +32,6 @@
                 <%= relationship.artist.name %>
                 （<%= relationship.artist.part.part_name %>）
                 
-                <!--時間あれば非同期通信化-->
                 <%= link_to "削除", admin_relationship_path(relationship), method: :delete %><br />
               <% end %>
 

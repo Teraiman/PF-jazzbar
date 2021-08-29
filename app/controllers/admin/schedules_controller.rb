@@ -10,7 +10,16 @@ class Admin::SchedulesController < ApplicationController
 
   def show
     @schedule = Schedule.find(params[:id])
+    if customer_signed_in?
+      @reserve = Reserve.find_by(schedule_id: @schedule.id, customer_id: current_customer.id)
+    elsif admin_signed_in?
+      @reserve = Reserve.find_by(schedule_id: @schedule.id, admin_id: current_admin.id)
+    else
+      flash[:alert] = "予約する場合はログインしてください。"
+      redirect_to new_customer_session_path
+    end
   end
+
 
   def edit
     @schedule = Schedule.find(params[:id])

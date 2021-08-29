@@ -1,2 +1,57 @@
-<h1>Admin::Reserves#edit</h1>
-<p>Find me in app/views/admin/reserves/edit.html.erb</p>
+<!--<h1>Admin::Reserves#edit</h1>-->
+<!--<p>Find me in app/views/admin/reserves/edit.html.erb</p>-->
+
+<h1 class="title text-center p-5">予約編集</h1>
+<div class="container">
+  <%= form_with model: @reserve, url: reserve_path, method: :patch, local: true do |f| %>
+    <div class="row pt-1">
+      <h3 class="col-12 text-center">人数の変更を下記より選択してください。</h3>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 text-center">
+        
+      </div>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 text-center">
+        <!-- 予約できる人数を上限にしてcountを作る。予約可能人数が１０人より多ければ最大は９-->
+        <%= f.select :count, [
+        ["１", "1"],
+        ["２", "2"],
+        ["３", "3"],
+        ["４", "4"],
+        ["５", "5"],
+        ["６", "6"],
+        ["７", "7"],
+        ["８", "8"],
+        ["９", "9"],
+        ["１０", "10"],
+        ["１１", "11"],
+        ["１２", "12"],
+        ["１３", "13"],
+        ["１４", "14"],
+        ["１５", "15"],
+        ["１６", "16"],
+        ["１７", "17"],
+        ["１８", "18"],
+        ["１９", "19"],
+        ["２０", "20"]
+        ], include_blank: "選択して下さい", :prompt => true %><br/>
+        </div>
+    </div>
+
+    <div class="row p-5">
+      <%= f.hidden_field :schedule_id, :value => @reserve.schedule_id %>
+      <div class="col-12 text-center">
+        <%= f.submit "内容を更新する", class: "btn btn-success" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center pb-5">
+        <%= link_to '予約を取り消す', reserve_path(@reserve.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"%>
+      </div>
+    </div>
+  <% end %>
+
+</div>
