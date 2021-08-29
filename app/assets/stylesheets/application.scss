@@ -27,22 +27,22 @@
 }
 
 .background {
-  background-image: url(background/dark_wood);
+  background-image: image-url('dark_wood.png');
 }
 
 .background-top {
-  background-image: url(background/dark_wood);
+  background-image: image-url('dark_wood.png');
 }
 
 // トップページスライドショー
 .image1 {
-  background-image: url(880774_s.jpg);
+  background-image: image-url('880774_s.jpg');
 }
 .image2 {
-  background-image: url(1109414_s.jpg);
+  background-image: image-url('1109414_s.jpg');
 }
 .image3 {
-  background-image: url(22079864_s.jpg);
+  background-image: image-url('22079864_s.jpg');
 }
 #container{
   height: 400px;
@@ -55,7 +55,7 @@
 
 
 .container {
-  background-image: url(background/xv);
+  background-image: image-url('xv.png');
   // background-color: #fffafa;
 }
 
@@ -63,6 +63,6 @@
   color: #ffffff;
 }
 
-.center {
-
-}
+// .center {
+//   background-image: image-url('dark_wood.png');
+// }
