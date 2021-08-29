@@ -79,7 +79,11 @@ end
     #delete 'schedules/:id/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     # delete 'schedules/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     get 'schedules/index_list', to: 'schedules#index_list'
-    resources :schedules
+    resources :schedules do
+      #管理者/予約
+      resources :reserves
+    end
+
     resources :relationships, only: [:destroy]
     #管理者/メンバー削除
     get 'relationships/destroy'
@@ -90,8 +94,6 @@ end
   #管理者/パート
     resources :part, only: [:index, :edit, :update, :create, :destroy]
 
-  #管理者/予約
-    resources :reserves
 
   #管理者/インフォメーション
     resources :informations

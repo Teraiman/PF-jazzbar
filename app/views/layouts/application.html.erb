@@ -48,9 +48,9 @@
               <div class="text-white p-2 mx-2">
                 ようこそ 「<%= current_customer.name %>」 様
               </div>
-              <%= link_to root_path do %><!--schedule-->
-                <i class="fas fa-bell fa-2x px-5" style="color: #FFFF00;"></i>
-              <% end %>
+              <!--<%#= link_to root_path do %>
+              <!--  <i class="fas fa-bell fa-2x px-5" style="color: #FFFF00;"></i>-->
+              <!--<%# end %>-->
               <%= link_to "SCHEDULE", schedules_path, class:"btn btn-outline-light" %>
               <%= link_to "マイページ", customer_path(current_customer), class:"btn btn-outline-light" %>
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-light" %>
@@ -102,7 +102,7 @@
                 <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
                 <%= link_to "Access", access_path, class: "nav-item nav-link" %>
                 <%= link_to "Artist", artists_path, class: "nav-item nav-link" %>
-                <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
+                <%#= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
               </div>
             </div>
 
@@ -122,7 +122,7 @@
                 <%= link_to "Information", informations_path, class: "nav-item nav-link" %>
                 <%= link_to "House rule", house_rules_index_path, class: "nav-item nav-link" %>
                 <%= link_to "Access", access_path, class: "nav-item nav-link" %>
-                <%= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
+                <%#= link_to "お問い合わせ", root_path, class: "nav-item nav-link" %>
               </div>
             </div>
           <% end %>

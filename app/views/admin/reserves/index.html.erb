@@ -1,6 +1,3 @@
-<!--<h1>Admin::Reserves#show</h1>-->
-<!--<p>Find me in app/views/admin/reserves/show.html.erb</p>-->
-
 <h1 class="title text-center p-5">予約一覧</h1>
 <div class="container">
   <div class="row p-5">
@@ -14,7 +11,7 @@
             <th>メモ</th>
           </tr>
 
-        <% @schedule.reserves.each do |reserve| %>
+        <% @reserves.each do |reserve| %>
           <tr>
             <td>
               <% if reserve.customer_id.present? %>
@@ -42,7 +39,7 @@
             </td>
 
             <td>
-              <%= link_to "変更", edit_admin_schedule_reserve_path(@reserve), class: "btn btn-info" %>
+              <%= link_to "変更", edit_admin_schedule_reserve_path(reserve.schedule, reserve), class: "btn btn-info" %>
             </td>
 
           </tr>
@@ -53,5 +50,3 @@
     </div>
   </div>
 </div>
-
-

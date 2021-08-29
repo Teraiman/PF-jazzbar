@@ -48,8 +48,10 @@
 
   <div class="row pb-5">
     <span class="col-2 offset-2"><%= link_to "編集する", edit_admin_schedule_path(@schedule.id), class: "btn btn-info" %></span>
-    <span class="col-3"><%= link_to "予約を追加する", new_admin_reserve_path(@schedule.id), class: "btn btn-info" %></span>
-    <span class="col-3"><%= link_to "予約の確認", admin_reserve_path(@schedule.id), class: "btn btn-info" %></span>
+    <span class="col-3"><%= link_to "予約を追加する", new_admin_schedule_reserve_path(@schedule.id), class: "btn btn-info" %></span>
+    <span class="col-3">
+      <%= link_to "予約の確認", admin_schedule_reserves_path(@schedule), class: "btn btn-info" %>
+    </span>
   </div>
 </div>
 
@@ -153,7 +155,7 @@
 
   <div class="row pb-5">
     <span class="col-4 offset-3"><%= link_to "前のページに戻る", :back, class: "btn btn-info" %></span>
-    <span class="col-4"><%= link_to "予約する", new_customer_registration_path, class: "btn btn-info" %></span>
+    <span class="col-4"><%= link_to "予約する", new_customer_session_path, class: "btn btn-info" %></span>
   </div>
 </div>
 
