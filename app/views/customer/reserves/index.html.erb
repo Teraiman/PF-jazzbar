@@ -1,0 +1,38 @@
+<h1 class="title text-center p-5">予約一覧</h1>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-12">
+      <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>TITLE</th>
+          <th>TIME</th>
+          <th>MEMBER</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reserves.each do |reserve| %>
+          <tr>
+            <td><%= reserve.schedule.date %></td>
+            <td>
+              <%= link_to reserve.schedule.title, schedule_path(reserve.schedule_id), class: "btn btn-outline-dark btn-sm" %><br/>
+              <%= reserve.schedule.other %>
+            </td>
+             <td><%= reserve.schedule.time %></td>
+            <td>
+              <% reserve.schedule.artists.each do |artist| %>
+                <%= artist.name %>     (<%= artist.part.part_name %>)<br/>
+              <% end %>
+            <td/>
+            <td>
+              <%= link_to "予約内容変更", reserve_path(reserve.id), class: "btn btn-outline-dark btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

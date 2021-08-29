@@ -1,0 +1,82 @@
+<h1 class="title text-center p-5">予約内容変更画面</h1>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-3 p-3 d-flex align-items-center">
+      <div class="schedule-image">
+        <%= attachment_image_tag @reserve.schedule, :image, width: '100%', height: '100%', fomat: 'jpeg' %>
+      </div>
+    </div>
+    <div class="col-8">
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="info">TITLE</td>
+            <td class="text-left"><%= @reserve.schedule.title %></td>
+          </tr>
+          <tr>
+              <td class="info">DATE</td>
+              <td class="text-left"><%= @reserve.schedule.date %></td>
+          </tr>
+          <tr>
+            <td class="info">TIME</td>
+            <td class="text-left"><%= @reserve.schedule.time %></td>
+          </tr>
+          <tr>
+            <td class="info">CHARGE</td>
+            <td class="text-left"><%= @reserve.schedule.charge %></td>
+          </tr>
+          <tr>
+            <td class="info">MEMBER</td>
+            <td class="text-left">
+              <% @reserve.schedule.relationships.each do |relationship| %>
+                <%= relationship.artist.name %>
+                （<%= relationship.artist.part.part_name %>）<br />
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="info">OTHER</td>
+            <td class="text-left"><%= @reserve.schedule.other %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= form_with model: @reserve, url: reserve_path, method: :patch, local: true do |f| %>
+    <div class="row pt-1">
+      <h3 class="col-12 text-center">人数の変更を下記より選択してください。</h3>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 text-center">
+        <!-- 予約できる人数を上限にしてcountを作る。予約可能人数が１０人より多ければ最大は９-->
+        <%= f.select :count, [
+        ["１", "1"],
+        ["２", "2"],
+        ["３", "3"],
+        ["４", "4"],
+        ["５", "5"],
+        ["６", "6"],
+        ["７", "7"],
+        ["８", "8"],
+        ["９", "9"]
+        ], include_blank: "選択して下さい", :prompt => true %><br/>
+        ※10名を超える場合はお手数ですが電話でのご予約をお願い致します。
+        </div>
+    </div>
+
+    <div class="row p-5">
+      <%= f.hidden_field :schedule_id, :value => @reserve.schedule_id %>
+      <div class="col-12 text-center">
+        <%= f.submit "内容を更新する", class: "btn btn-success" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center pb-5">
+        <%= link_to '予約を取り消す', reserve_path(@reserve.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"%>
+      </div>
+    </div>
+  <% end %>
+
+</div>
