@@ -4,9 +4,6 @@ class Schedule < ApplicationRecord
   has_many :artists, through: :relationships
   accepts_nested_attributes_for :artists
 
-
-
-
   attachment :image
 
   validates :title, presence: true
