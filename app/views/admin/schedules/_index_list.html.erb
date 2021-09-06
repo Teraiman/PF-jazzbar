@@ -11,7 +11,12 @@
 <div class="container">
   <div class="row pt-5">
     <div class="col-12 text-center">
-      <%#= paginate @schedules %>
+
+      <%#= link_to_next_page @schedules, '次月', remote: true %>
+      <%#= link_to_next_page @schedules, '前月', remote: true %>
+
+      <%#= link_to_prev_page @schedules, 'Previous Page' %>
+      <%#= link_to_next_page @schedules, 'Next Page' %>
     </div>
   </div>
   <div class="row p-5">

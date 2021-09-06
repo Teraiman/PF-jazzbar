@@ -10,6 +10,7 @@ class Admin::SchedulesController < ApplicationController
     # 今日を含む月の、次の月の初日
     to = Date.today.next_month.beginning_of_month
     @schedules = Schedule.all.order(date: :ASC).where(date: from...to)
+    # .page(params[:page]).without_count
     # .page(params[:page]).per(31)
     # byebug
   end
