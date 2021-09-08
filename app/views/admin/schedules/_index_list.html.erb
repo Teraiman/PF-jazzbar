@@ -4,21 +4,11 @@
 <% if admin_signed_in? %>
 
 <div class="row pb-5">
-  <%= link_to "LIST", admin_schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "This month's list", admin_schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
   <%= link_to "CALENDAR", admin_schedules_path, class: "col-1 btn btn-outline-light" %>
 </div>
 
 <div class="container">
-  <div class="row pt-5">
-    <div class="col-12 text-center">
-
-      <%#= link_to_next_page @schedules, '次月', remote: true %>
-      <%#= link_to_next_page @schedules, '前月', remote: true %>
-
-      <%#= link_to_prev_page @schedules, 'Previous Page' %>
-      <%#= link_to_next_page @schedules, 'Next Page' %>
-    </div>
-  </div>
   <div class="row p-5">
     <table class="table table-sm table-striped">
       <thead>
@@ -54,7 +44,7 @@
 <!--会員ログイン中##########################################################################-->
 <% elsif customer_signed_in? %>
 <div class="row pb-5">
-  <%= link_to "LIST", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "This month's list", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
   <%= link_to "CALENDAR", schedules_path, class: "col-1 btn btn-outline-light" %>
 </div>
 
@@ -94,7 +84,7 @@
 <!--ログインしていない時####################################################################-->
 <% else %>
 <div class="row pb-5">
-  <%= link_to "LIST", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
+  <%= link_to "This month's list", schedules_index_list_path, class: "col-1 offset-5 btn btn-outline-light" %>
   <%= link_to "CALENDAR", schedules_path, class: "col-1 btn btn-outline-light" %>
 </div>
 
