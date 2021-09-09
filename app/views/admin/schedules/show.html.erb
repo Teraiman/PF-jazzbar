@@ -1,1 +1,54 @@
-<%= render partial: 'show' %>
+<h1 class="title text-center p-5">公演情報詳細</h1>
+
+<div class="container">
+  <div class="schedule-image text-center pt-5">
+    <%= attachment_image_tag @schedule, :image, width: '50%', height: '50%', fomat: 'jpeg' %>
+  </div>
+  <div class="row p-5">
+    <div class="col-8 offset-2">
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="info col-3">TITLE</td>
+            <td class="text-left"><%= @schedule.title %></td>
+          </tr>
+          <tr>
+              <td class="info col-3">DATE</td>
+              <td class="text-left"><%= @schedule.date %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">TIME</td>
+            <td class="text-left"><%= @schedule.time %></td>
+          </tr>
+          <tr>
+            <td class="info col-3">CHARGE</td>
+            <td class="text-left"><%= @schedule.charge %></td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">MEMBER</td>
+            <td class="text-left">
+              <% @schedule.relationships.each do |relationship| %>
+                <%= relationship.artist.name %>
+                （<%= relationship.artist.part.part_name %>）<br />
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="info col-3">OTHER</td>
+            <td class="text-left"><%= @schedule.other %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row pb-5">
+    <span class="col-2 offset-2"><%= link_to "編集する", edit_admin_schedule_path(@schedule.id), class: "btn btn-info" %></span>
+    <span class="col-3"><%= link_to "予約を追加する", new_admin_schedule_reserve_path(@schedule.id), class: "btn btn-info" %></span>
+    <span class="col-3">
+      <%= link_to "予約の確認", admin_schedule_reserves_path(@schedule), class: "btn btn-info" %>
+    </span>
+  </div>
+</div>
