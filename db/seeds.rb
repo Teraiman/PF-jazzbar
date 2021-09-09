@@ -16,15 +16,37 @@ Admin.create!(
   password: "test@test"
 )
 
-# # ここからCustomerアカウント作成
-# 5.times do |number|
-#   Customers.create!(
-#     name: "氏名#{number + 1}",
-#     name_kana: "シメイ",
-#     email: "test@test#{number + 1}",
-#     postal_cord: "0000000",
-#     address: "住所#{number + 1}",
-#     telephone_number: "0000000000#{number + 1}",
-#     password: "test@test#{number + 1}",
+# ここからSchedules作成
+# 50.times do |n|
+#   Schedules.create!(
+#     title: "タイトル#{n + 1}",
+#     time: "20時start",
+#     charge: "5000",
+#     other: "サンプル",
+#     image: File.open('./app/assets/images/test.png')
+#     date: from = Date.today.beginning_of_month
+#             to = Date.today.next_month.beginning_of_month
+#           date = Schedule.where(date: from...to)
 #   )
 # end
+
+    
+# 50.times do |n|
+#   User.create!(
+#     name: name,
+#     email: email,
+#     password: password,
+#     password_confirmation: password,
+#     activated: true,
+#     activated_at: Time.zone.now
+#     birth_date: from = Time.parse("1950/01/01")
+#     to = Time.parse("2000/01/01")
+#     date = Random.rand(from..to)
+#   )
+# end
+
+
+
+#     from = Date.today.beginning_of_month
+#     to = Date.today.next_month.beginning_of_month
+#     date = Schedule.where(date: from...to)
