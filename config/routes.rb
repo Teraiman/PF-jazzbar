@@ -68,8 +68,6 @@ end
     get 'schedules/:id/member', to: 'schedules#member', as: 'member'
     post 'schedules/:id/member', to: 'schedules#member_create', as: 'member_create'
     post 'schedules/:id/member_select', to: 'schedules#member_select', as: 'member_select'
-    #delete 'schedules/:id/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
-    # delete 'schedules/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     get 'schedules/index_list', to: 'schedules#index_list'
     resources :schedules do
       #管理者/予約

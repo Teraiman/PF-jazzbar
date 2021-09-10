@@ -23,15 +23,16 @@
             <td class="info col-3">CHARGE</td>
             <td class="text-left"><%= @schedule.charge %></td>
           </tr>
-
-<!--######会員ログイン中##########################################################################-->
-          <% if customer_signed_in? %>
           <tr>
             <td class="info col-3">MEMBER</td>
             <td class="text-left">
               <% @schedule.relationships.each do |relationship| %>
                 <%= relationship.artist.name %>
-                （<%= relationship.artist.part.part_name %>）<%= render 'customer/favorites/favorite', artist: relationship.artist %><br />
+                  <% if customer_signed_in? %> <!--会員 or 非会員-->
+                  （<%= relationship.artist.part.part_name %>）<%= render 'customer/favorites/favorite', artist: relationship.artist %><br />
+                  <% else %>
+                  （<%= relationship.artist.part.part_name %>）<br />
+                  <% end %>
               <% end %>
             </td>
           </tr>
@@ -47,35 +48,10 @@
 
   <div class="row pb-5">
     <span class="col-4 offset-3"><%= link_to "前のページに戻る", :back, class: "btn btn-info" %></span>
-    <span class="col-4"><%= link_to "予約する", new_reserve_path(@schedule), class: "btn btn-info" %></span>
+    <% if customer_signed_in? %> <!--会員 or 非会員-->
+      <span class="col-4"><%= link_to "予約する", new_reserve_path(@schedule), class: "btn btn-info" %></span>
+    <% else %>
+      <span class="col-4"><%= link_to "予約する", new_customer_session_path, class: "btn btn-info" %></span>
+    <% end %>
   </div>
 </div>
-
-<!--######ログインしていない時####################################################################-->
-          <% else %>
-          <tr>
-            <td class="info col-3">MEMBER</td>
-            <td class="text-left">
-              <% @schedule.relationships.each do |relationship| %>
-                <%= relationship.artist.name %>
-                （<%= relationship.artist.part.part_name %>）<br />
-              <% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="info col-3">OTHER</td>
-            <td class="text-left"><%= @schedule.other %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="row pb-5">
-    <span class="col-4 offset-3"><%= link_to "前のページに戻る", :back, class: "btn btn-info" %></span>
-    <span class="col-4"><%= link_to "予約する", new_customer_session_path, class: "btn btn-info" %></span>
-  </div>
-</div>
-
-<% end %>
