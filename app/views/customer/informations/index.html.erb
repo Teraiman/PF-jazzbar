@@ -1,2 +1,19 @@
-<!--customer/informations/index-->
-<%= render partial: 'admin/informations/index' %>
+<h1 class="title text-center p-5">INFORMATION</h1>
+
+<div class="container">
+  <div class="row p-5">
+    <table class="table table-hover">
+      <% @informations.each do |information| %>
+        <tr>
+          <td><%= information.date %></td>
+          <td>
+            <%= link_to information_path(information.id) do %>
+              <%= information.title %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+      <%= paginate @informations %>
+  </div>
+</div>

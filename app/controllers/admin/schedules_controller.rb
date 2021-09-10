@@ -80,6 +80,10 @@ class Admin::SchedulesController < ApplicationController
   end
 
   def destroy
+    @schedule = Schedule.find(params[:id])
+    @schedule.destroy
+    flash[:alert] = "削除しました"
+    redirect_to admin_schedules_path
   end
 
   private
