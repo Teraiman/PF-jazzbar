@@ -101,7 +101,7 @@
           <% if admin_signed_in? %> <!--ログインしているのは、管理者? or 会員?-->
             <tr><th><%= link_to information.date, admin_information_path(information.id), class: "text-dark" %>     <%= link_to information.title, admin_information_path(information.id), class: "text-dark" %></th></tr>
           <% else %>
-            <tr><th><%= link_to information.date, admin_information_path(information.id), class: "text-dark" %>     <%= link_to information.title, admin_information_path(information.id), class: "text-dark" %></th></tr>
+            <tr><th><%= link_to information.date, information_path(information.id), class: "text-dark" %>     <%= link_to information.title, information_path(information.id), class: "text-dark" %></th></tr>
           <% end %>
         <% end %>
       </table>
