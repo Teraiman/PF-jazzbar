@@ -1,17 +1,14 @@
 class Admin::SchedulesController < ApplicationController
-      # binding.pry
+  include Kaminari::Helpers::UrlHelper
+
   def index
     @schedules = Schedule.all
   end
 
   def index_list
-    # 今日を含む月の初日
-    from = Date.today.beginning_of_month
-    # 今日を含む月の、次の月の初日
-    to = Date.today.next_month.beginning_of_month
+    from = Date.today.beginning_of_month    # 今日を含む月の初日
+    to = Date.today.next_month.beginning_of_month    # 今日を含む月の、次の月の初日
     @schedules = Schedule.all.order(date: :ASC).where(date: from...to)
-    # .page(params[:page]).without_count
-    # .page(params[:page]).per(31)
     # byebug
   end
 
@@ -83,6 +80,10 @@ class Admin::SchedulesController < ApplicationController
   end
 
   def destroy
+    @schedule = Schedule.find(params[:id])
+    @schedule.destroy
+    flash[:alert] = "削除しました"
+    redirect_to admin_schedules_path
   end
 
   private

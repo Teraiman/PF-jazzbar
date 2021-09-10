@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :customer do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # devise_for :admins
@@ -24,7 +19,7 @@ scope module: :customer do
     # get 'customers/quit', to: 'customers#quit'
     # get 'customers/quitcheck', to: 'customers#quitcheck'
     resources :customers, only: [:show, :edit, :update] do
-      collection do
+      member do
         get 'quitcheck'
         patch 'quit'
         get 'favorites'
@@ -52,6 +47,8 @@ scope module: :customer do
 
   #会員/お気に入り
     get 'favorites/index'
+    get 'favorites/create'
+    get 'favorites/destroy'
     # get 'favorite/destroy'
 end
   ########## 会員 ##########
@@ -67,17 +64,10 @@ end
       end
     end
 
-  #管理者/ホーム
-    get 'homes/top', to: 'homes#top'
-    get 'homes/about', to: 'homes#about', as: 'about'
-    get 'homes/access', to: 'homes#access', as: 'access'
-
   #管理者/スケジュール
     get 'schedules/:id/member', to: 'schedules#member', as: 'member'
     post 'schedules/:id/member', to: 'schedules#member_create', as: 'member_create'
     post 'schedules/:id/member_select', to: 'schedules#member_select', as: 'member_select'
-    #delete 'schedules/:id/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
-    # delete 'schedules/member_destroy', to: 'schedules#member_destroy', as: 'member_destroy'
     get 'schedules/index_list', to: 'schedules#index_list'
     resources :schedules do
       #管理者/予約
@@ -97,10 +87,6 @@ end
 
   #管理者/インフォメーション
     resources :informations
-
-  #管理者/ハウスルール
-    get 'house_rules/index'
-
 
   end
   ########## 管理者 ##########

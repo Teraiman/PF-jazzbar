@@ -1,2 +1,20 @@
-<!--customer/artists/index-->
-<%= render partial: 'admin/artists/index' %>
+<h1 class="title text-center p-5">Artist一覧</h1>
+<div class="container">
+  <div class="row p-5">
+    <table class="table table-hover">
+      <tr>
+        <th>NAME</th>
+        <th>PERT</th>
+        <th>FAVORITE</th>
+      </tr>
+      <% @artists.each do |artist| %>
+        <tr>
+          <td><%= artist.name %></td>
+          <td><%= artist.part.part_name %></td>
+          <td><%= render 'customer/favorites/favorite', artist: artist %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <%= paginate @artists %>
+</div>
