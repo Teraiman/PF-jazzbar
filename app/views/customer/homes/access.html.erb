@@ -2,28 +2,63 @@
 <div class="container">
   <div class="row p-5">
     <div class="col-5">
-      <h3>Jazzbar</h3>
-      <a>
-        【住所】<br/>
-        〒000-0000<br/>
-        福岡市中央区〇〇1-11-1<br/>
-        近隣駅から 徒歩約5分<br/>
-        ※駐車場はございません。<br/>
-        【電話番号】<br/>
-        000-000-0000<br/>
-        電話は営業時間内にお願いいたします。<br/>
-        ※くれぐれもおかけ間違いのないようご注意ください。<br/>
-        【営業時間】<br/>
-        平日 18:00~23:00<br/>
-        土日祝日 17:00~23:00<br/>
-        ※一部例外あり、スケジュールのご確認をお願いいたします。<br/>
-      </a>
+      <h2>Jazzbar</h2>
+      <p>
+        【住所】</br>
+        〒000-0000</br>
+        福岡市中央区〇〇1-11-1</br>
+        <a href="https://www.google.co.jp/maps/place/%E5%A4%A9%E7%A5%9E%E5%8D%97%E9%A7%85/@33.5884925,130.4024043,19z/data=!4m5!3m4!1s0x3541919014499b3f:0x8d1c0f46bca91ea0!8m2!3d33.5885459!4d130.4023766">
+          Google mapを開く
+        </a>
+      </p>
+      <p>
+        近隣駅から 徒歩約5分</br>
+        ※駐車場はございません。
+      </p>
+      <p>
+        【電話番号】</br>
+        000-000-0000</br>
+        電話は営業時間内にお願いいたします。</br>
+        ※くれぐれもおかけ間違いのないようご注意ください。
+      </p>
+      <p>【営業時間】</br>
+        平日 18:00~23:00</br>
+        土日祝日 17:00~23:00</br>
+        ※一部例外あり、スケジュールのご確認をお願いいたします。
+      </p>
     </div>
 
     <!--Google maps API-->
     <div class="col-7">
       <%#= image_tag 'watermark.jpg', width: '100%', height: '100%' %>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1nkjKgYYc3ELKG32LCs9WLbLkaQr6zZ4"></script>
+      <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1nkjKgYYc3ELKG32LCs9WLbLkaQr6zZ4"></script>-->
+      <div id='map'></div>
+      <style>
+      #map{
+        height: 400px;
+      }
+      </style>
+      <script>
+      var map;
+      var marker;
+      var center = {
+        lat: 33.5884925,
+        lng: 130.4024043
+      };
+      function initMap(){
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: center,
+        zoom: 17
+        });
+
+        marker = new google.maps.Marker({
+          position: center,
+          map: map
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1nkjKgYYc3ELKG32LCs9WLbLkaQr6zZ4&callback=initMap" async defer></script>
+
     </div>
   </div>
 </div>
