@@ -6,7 +6,10 @@
       <p>
         【住所】</br>
         〒000-0000</br>
-        福岡市中央区〇〇1-11-1
+        福岡市中央区〇〇1-11-1</br>
+        <a href="https://www.google.co.jp/maps/place/%E5%A4%A9%E7%A5%9E%E5%8D%97%E9%A7%85/@33.5884925,130.4024043,19z/data=!4m5!3m4!1s0x3541919014499b3f:0x8d1c0f46bca91ea0!8m2!3d33.5885459!4d130.4023766">
+          Google mapを開く
+        </a>
       </p>
       <p>
         近隣駅から 徒歩約5分</br>
@@ -36,10 +39,21 @@
       }
       </style>
       <script>
+      var map;
+      var marker;
+      var center = {
+        lat: 33.5884925,
+        lng: 130.4024043
+      };
       function initMap(){
-        let map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 33.5884925, lng: 130.4024043},
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: center,
         zoom: 17
+        });
+
+        marker = new google.maps.Marker({
+          position: center,
+          map: map
         });
       }
       </script>
