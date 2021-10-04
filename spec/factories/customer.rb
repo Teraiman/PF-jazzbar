@@ -7,6 +7,7 @@ FactoryBot.define do
     address { "住所県住所市" }
     telephone_number { "09012345678" }
     memo { "ボトルキープ" }
-    # is_deleted { Faker:: }
+    is_deleted { "true" }
+    password { "000000" }
   end
 end
