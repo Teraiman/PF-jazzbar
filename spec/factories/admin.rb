@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :admin do
-    email { Faker::Admin.email }
-    encrypted_password { Faker::Admin.encrypted_password }
+    email { "admin@example.com" }
+    password { "000000" }
   end
 end
